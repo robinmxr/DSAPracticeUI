@@ -2,6 +2,8 @@
 
 **DSA Mastery Plan** is a modern, interactive web app to help you master Data Structures & Algorithms in 6 weeks. It provides a week-by-week learning roadmap, topic breakdowns, curated problem sets, and progress tracking—all in a clean, dark-mode-friendly interface.
 
+![DSA Mastery Plan Screenshot](./dsa.png)
+
 ## Features
 
 - 📅 **Weekly Roadmap:** Navigate through a structured 6-week DSA plan.
