@@ -1,20 +1,22 @@
 # DSA Mastery Plan
 
-This project helps you master Data Structures & Algorithms with a structured, interactive roadmap.
+**DSA Mastery Plan** is a modern, interactive web app to help you master Data Structures & Algorithms in 6 weeks. It provides a week-by-week learning roadmap, topic breakdowns, curated problem sets, and progress tracking—all in a clean, dark-mode-friendly interface.
 
-## Getting Started
+## Features
 
-### Prerequisites
+- 📅 **Weekly Roadmap:** Navigate through a structured 6-week DSA plan.
+- 📚 **Topic Breakdown:** Each week contains focused topics with handpicked problems.
+- ✅ **Progress Tracking:** Mark problems as completed and see your progress visually.
+- 🏆 **Practice & Theory:** Mix of theory and practice for each topic.
+- 🔎 **Sidebar Navigation:** Quickly jump between weeks and topics.
+- 🌙 **Modern UI:** Minimal, responsive, and dark-mode compatible.
 
-- [Node.js](https://nodejs.org/) (v16 or later recommended)
-- [npm](https://www.npmjs.com/) (comes with Node.js)
-
-### Installation
+## How to Use
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/your-username/dsa-mastery-plan.git
-   cd dsa-mastery-plan
+   git clone https://github.com/robinmxr/DSAPracticeUI.git
+   cd DSAPracticeUI
    ```
 
 2. **Install dependencies:**
@@ -22,33 +24,24 @@ This project helps you master Data Structures & Algorithms with a structured, in
    npm install
    ```
 
-### Usage
+3. **Start the development server:**
+   ```sh
+   npm start
+   ```
+   The app will be available at [http://localhost:3000](http://localhost:3000).
 
-Start the development server:
+4. **Navigate the Plan:**
+   - Use the sidebar to select a week and topic.
+   - Click on problems to view details and mark them as completed.
+   - Track your progress with the cards at the top of the main page.
 
-```sh
-npm start
-```
+5. **Note:**  
+   Some problem sets are currently incomplete. More problems and solutions are being added—stay tuned for updates!
 
-- Open [http://localhost:3000](http://localhost:3000) in your browser.
-- The app will reload automatically when you make changes.
+## Contributing
 
-### Marking Progress
-
-- Click on problems to view details and mark them as completed.
-- Track your weekly and topic progress in the sidebar and dashboard.
-
----
-
-## Learn More
-
-- [React documentation](https://reactjs.org/)
-- [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)
+Pull requests are welcome! If you have suggestions for new problems, improvements, or bug fixes, feel free to open an issue or PR.
 
 ---
 
-## Notes
-
-- **No build step is required.**  
-  Just use `npm start` for local usage.
-- For deployment or advanced configuration, refer to [Create React App documentation](https://facebook.github.io/create-react-app/docs/deployment).
+**Enjoy your DSA journey!**

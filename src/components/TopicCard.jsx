@@ -1,86 +1,82 @@
 import React from 'react';
-import { BookOpen, Code, CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+const difficultyColors = {
+  Easy: 'bg-green-700 text-green-100',
+  Medium: 'bg-yellow-600 text-yellow-100',
+  Hard: 'bg-red-700 text-red-100',
+};
 
 const TopicCard = ({
   topic,
-  completedTopics,
-  toggleComplete,
-  setSelectedProblem,
+  isCompleted,
+  setSelectedProblem, // not used anymore
   practiceProblems,
   completedProblems,
-  toggleProblemComplete = () => {},
 }) => (
-  <div className="border border-gray-200 rounded-lg p-4 mb-4">
-    <div className="flex items-center justify-between mb-3">
-      <div className="flex items-center gap-3">
-        <button
-          onClick={() => toggleComplete(topic.id)}
-          className={`w-6 h-6 rounded-full flex items-center justify-center ${
-            completedTopics.has(topic.id)
-              ? 'bg-green-500 text-white'
-              : 'border-2 border-gray-300'
-          }`}
-        >
-          {completedTopics.has(topic.id) && <CheckCircle size={16} />}
-        </button>
-        <h3 className="text-lg font-medium text-gray-800">{topic.title}</h3>
-      </div>
-      <div className="flex gap-4 text-sm text-gray-600">
-        <span className="flex items-center gap-1">
-          <BookOpen size={14} /> Learn: {topic.timeLearn}
-        </span>
-        <span className="flex items-center gap-1">
-          <Code size={14} /> Practice: {topic.timePractice}
-        </span>
-      </div>
-    </div>
-    <div className="mb-3">
-      <h4 className="font-medium text-gray-700 mb-2">Key Concepts:</h4>
-      <div className="flex flex-wrap gap-2">
-        {topic.concepts.map((concept, idx) => (
-          <span key={idx} className="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">
-            {concept}
+  <div
+    className={`mb-6 p-4 rounded-lg border shadow-sm ${
+      isCompleted
+        ? 'bg-green-900/10 border-green-700'
+        : 'bg-[#18181b] border-gray-700'
+    }`}
+  >
+    <div className="flex items-center justify-between mb-2">
+      <h3 className="text-lg font-semibold text-gray-100 flex items-center">
+        {topic.title}
+        {isCompleted && (
+          <span className="ml-3 flex items-center text-green-400 text-base font-bold">
+            <CheckCircle size={18} className="mr-1" /> Completed
           </span>
-        ))}
-      </div>
+        )}
+      </h3>
     </div>
-    <div>
-      <h4 className="font-medium text-gray-700 mb-2">Practice Problems:</h4>
-      <div className="grid gap-2">
-        {topic.problems.map((problem, idx) => (
-          <div key={idx} className="flex items-center justify-between p-2 bg-gray-50 rounded">
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => toggleProblemComplete(problem.name)}
-                className={`w-5 h-5 rounded-full flex items-center justify-center ${
-                  completedProblems.has(problem.name)
-                    ? 'bg-green-500 text-white'
-                    : 'border-2 border-gray-300'
-                }`}
-                aria-label={`Mark ${problem.name} as complete`}
-              >
-                {completedProblems.has(problem.name) && <CheckCircle size={14} />}
-              </button>
-              <Link
-  to={`/problem/${problem.name}`}
-  className="problem-link"
->
-              <span className="font-medium text-gray-800">{problem.name}</span>
-              <span className={`px-2 py-2 rounded text-sm ${
-                problem.difficulty === 'Easy' ? 'bg-green-100 text-green-800' :
-                problem.difficulty === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
-                'bg-red-100 text-red-800'
-              }`}>
-                {problem.difficulty}
+    <ul className="mt-2 space-y-3">
+      {topic.problems.map((problem) => {
+        const isDone = completedProblems.has(problem.name);
+        const difficulty =
+          (practiceProblems[problem.name] && practiceProblems[problem.name].difficulty) ||
+          problem.difficulty ||
+          'Medium';
+        return (
+          <li
+            key={problem.name}
+            className={`flex items-center gap-4 px-4 py-4 rounded-xl transition ${
+              isDone
+                ? 'bg-green-900/30 border border-green-700'
+                : 'bg-[#23232b] border border-transparent hover:border-blue-700'
+            }`}
+          >
+             <span
+              className={`inline-flex items-center justify-center w-6 h-6 rounded-full border-2 transition
+                ${isDone ? 'border-green-500 bg-green-500' : 'border-gray-500 bg-[#18181b]'}
+              `}
+            >
+              {isDone && <CheckCircle size={16} className="text-white" />}
+            </span>
+            <Link
+              to={`/problem/${encodeURIComponent(problem.name)}`}
+              className={`flex-1 font-medium text-base bg-transparent border-0 p-0 m-0 hover:underline transition ${
+                isDone ? 'text-green-300' : 'text-gray-100'
+              }`}
+            >
+              {problem.name}
+            </Link>
+            <span
+              className={`ml-2 px-2 py-0.5 rounded text-xs font-semibold ${difficultyColors[difficulty] || difficultyColors['Medium']}`}
+            >
+              {difficulty}
+            </span>
+            {isDone && (
+              <span className="text-green-400 text-lg ml-1">
+                <CheckCircle size={18} />
               </span>
-              <span className="text-sm text-gray-600">{problem.pattern}</span>
-              </Link>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+            )}
+          </li>
+        );
+      })}
+    </ul>
   </div>
 );
 

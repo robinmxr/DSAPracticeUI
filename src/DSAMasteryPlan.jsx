@@ -6,11 +6,15 @@ import ProblemModal from './components/ProblemModal';
 import DailyStudyTips from './components/DailyStudyTips';
 import { learningPlan, practiceProblems } from './data/planData';
 
-const DSAMasteryPlan = () => {
-  const [activeWeek, setActiveWeek] = useState(1);
-  const [selectedTopicId, setSelectedTopicId] = useState(null);
+const DSAMasteryPlan = ({
+  activeWeek,
+  setActiveWeek,
+  selectedTopicId,
+  setSelectedTopicId,
+  completedProblems,
+  toggleProblemComplete,
+}) => {
   const [selectedProblem, setSelectedProblem] = useState(null);
-  const [completedProblems, setCompletedProblems] = useState(new Set());
 
   // Calculate topic completion based on problems
   const getCompletedTopics = () => {
@@ -31,27 +35,15 @@ const DSAMasteryPlan = () => {
 
   const completedTopics = getCompletedTopics();
 
-  const toggleProblemComplete = (problemName) => {
-    setCompletedProblems(prev => {
-      const next = new Set(prev);
-      if (next.has(problemName)) {
-        next.delete(problemName);
-      } else {
-        next.add(problemName);
-      }
-      return next;
-    });
-  };
-
   const planArray = Object.values(learningPlan);
   const problemArray = Object.values(practiceProblems);
 
   const totalTopics = planArray.reduce((acc, week) => acc + (week.topics?.length || 0), 0);
-  const totalProblems = problemArray.length;
+  const totalProblems = Object.keys(practiceProblems).length;
 
   const completedTopicsCount = completedTopics.size;
   const completedProblemsCount = Array.from(completedProblems).filter(problemName =>
-    problemArray.some(problem => problem.name === problemName)
+    practiceProblems[problemName]
   ).length;
 
   const topicProgress = Math.round((completedTopicsCount / totalTopics) * 100) || 0;
@@ -64,60 +56,72 @@ const DSAMasteryPlan = () => {
         setActiveWeek={setActiveWeek}
         selectedTopicId={selectedTopicId}
         setSelectedTopicId={setSelectedTopicId}
+        completedTopicsCount={completedTopicsCount}
+        totalTopics={totalTopics}
+        topicProgress={topicProgress}
+        completedProblemsCount={completedProblemsCount}
+        totalProblems={totalProblems}
+        problemProgress={problemProgress}
       >
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-          <div className="flex items-center gap-3 mb-4">
-            <Target className="text-blue-400" size={28} />
-            <h1 className="text-2xl font-bold text-gray-100">DSA Interview Prep Plan</h1>
-          </div>
-          <div className="bg-blue-50 p-4 rounded-lg mb-4">
-            <p className="text-gray-300">
-              <strong>Goal:</strong> Master data structures & algorithms in 6 weeks (1-2 hours/day)
+        {/* Modern Asymmetric Cards Layout */}
+        <div className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Goal Card */}
+          <div className="col-span-1 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 rounded-2xl shadow-lg p-6 flex flex-col justify-between min-h-[160px] border border-blue-800">
+            <div className="flex items-center gap-3 mb-2">
+              <Target className="text-blue-300" size={28} />
+              <h2 className="text-xl font-bold text-blue-100">Goal</h2>
+            </div>
+            <p className="text-blue-100 text-base font-medium mb-2">
+              Master DSA in <span className="font-bold text-blue-200">6 weeks</span>
             </p>
-            <div className="flex gap-6 mt-2 text-sm">
+            <div className="flex gap-4 mt-auto text-xs text-blue-200">
               <span className="flex items-center gap-1">
-                <Clock size={16} className="text-blue-400" /> 1-2 hours daily
+                <Clock size={15} className="text-blue-300" /> 1-2h/day
               </span>
               <span className="flex items-center gap-1">
-                <BookOpen size={16} className="text-green-400" /> Theory + Practice
+                <BookOpen size={15} className="text-green-300" /> Theory+Practice
               </span>
               <span className="flex items-center gap-1">
-                <Trophy size={16} className="text-yellow-400" /> Interview Ready
+                <Trophy size={15} className="text-yellow-300" /> Interview Ready
               </span>
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4">
-            {/* Topics Progress */}
-            <div className="flex-1 bg-[#18181b] rounded-lg p-4 flex flex-col items-start border border-gray-700">
-              <span className="text-sm text-gray-400 mb-1">Topics Progress</span>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-lg font-bold text-blue-400">{completedTopicsCount}</span>
-                <span className="text-gray-400">/</span>
-                <span className="text-gray-300">{totalTopics}</span>
-                <span className="ml-2 text-xs text-gray-500">{topicProgress}%</span>
-              </div>
-              <div className="w-full bg-gray-800 rounded h-2">
-                <div
-                  className="bg-blue-500 h-2 rounded transition-all"
-                  style={{ width: `${topicProgress}%` }}
-                />
-              </div>
+          {/* Topics Progress Card */}
+          <div className="col-span-1 bg-gradient-to-br from-green-900 via-green-800 to-green-700 rounded-2xl shadow-lg p-6 flex flex-col justify-between min-h-[160px] border border-green-800">
+            <div className="flex items-center gap-2 mb-2">
+              <BookOpen size={22} className="text-green-300" />
+              <span className="text-lg font-semibold text-green-100">Topics Progress</span>
             </div>
-            {/* Problems Progress */}
-            <div className="flex-1 bg-[#18181b] rounded-lg p-4 flex flex-col items-start border border-gray-700">
-              <span className="text-sm text-gray-400 mb-1">Problems Progress</span>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-lg font-bold text-green-400">{completedProblemsCount}</span>
-                <span className="text-gray-400">/</span>
-                <span className="text-gray-300">{totalProblems}</span>
-                <span className="ml-2 text-xs text-gray-500">{problemProgress}%</span>
-              </div>
-              <div className="w-full bg-gray-800 rounded h-2">
-                <div
-                  className="bg-green-500 h-2 rounded transition-all"
-                  style={{ width: `${problemProgress}%` }}
-                />
-              </div>
+            <div className="flex items-end gap-2 mb-2">
+              <span className="text-2xl font-bold text-green-200">{completedTopicsCount}</span>
+              <span className="text-green-300 text-lg">/</span>
+              <span className="text-green-100 text-lg">{totalTopics}</span>
+              <span className="ml-2 text-xs text-green-300">{topicProgress}%</span>
+            </div>
+            <div className="w-full bg-green-950 rounded h-2 mb-1">
+              <div
+                className="bg-green-400 h-2 rounded transition-all"
+                style={{ width: `${topicProgress}%` }}
+              />
+            </div>
+          </div>
+          {/* Problems Progress Card */}
+          <div className="col-span-1 bg-gradient-to-br from-purple-900 via-purple-800 to-purple-700 rounded-2xl shadow-lg p-6 flex flex-col justify-between min-h-[160px] border border-purple-800">
+            <div className="flex items-center gap-2 mb-2">
+              <Target size={22} className="text-purple-300" />
+              <span className="text-lg font-semibold text-purple-100">Problems Progress</span>
+            </div>
+            <div className="flex items-end gap-2 mb-2">
+              <span className="text-2xl font-bold text-purple-200">{completedProblemsCount}</span>
+              <span className="text-purple-300 text-lg">/</span>
+              <span className="text-purple-100 text-lg">{totalProblems}</span>
+              <span className="ml-2 text-xs text-purple-300">{problemProgress}%</span>
+            </div>
+            <div className="w-full bg-purple-950 rounded h-2 mb-1">
+              <div
+                className="bg-purple-400 h-2 rounded transition-all"
+                style={{ width: `${problemProgress}%` }}
+              />
             </div>
           </div>
         </div>

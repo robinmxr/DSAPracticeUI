@@ -81,11 +81,11 @@ const ProblemPage = ({
         </div>
         <div className="my-6">
           <h4 className="font-medium mb-2 text-gray-200">Concepts:</h4>
-          <div className="flex flex-wrap gap-2 mt-2">
+          <div className="flex flex-wrap gap-3 mt-2">
             {concepts.map((concept, idx) => (
               <button
                 key={idx}
-                className="bg-blue-900 text-blue-200 text-xs font-medium px-2 py-1 rounded border border-blue-700 hover:bg-blue-800 transition"
+                className="bg-blue-900 text-blue-200 text-sm font-semibold px-4 py-2 rounded-lg border border-blue-700 hover:bg-blue-800 transition shadow-sm"
                 onClick={() => setSelectedConcept(concept)}
                 type="button"
               >
@@ -95,7 +95,7 @@ const ProblemPage = ({
           </div>
           {pattern && (
             <button
-              className="problem-tag"
+              className="problem-tag bg-blue-900 text-blue-200 text-sm font-semibold px-4 py-2 rounded-lg border border-blue-700 hover:bg-blue-800 transition shadow-sm mt-2"
               onClick={() => setSelectedConcept(pattern)}
               type="button"
             >

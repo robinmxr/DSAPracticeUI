@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DSAMasteryPlan from './DSAMasteryPlan';
 import ProblemPage from './components/ProblemPage';
 import { learningPlan, practiceProblems } from './data/planData';
 
+const LOCAL_STORAGE_KEY = 'completedProblems';
+
 const App = () => {
   const [activeWeek, setActiveWeek] = useState(1);
   const [selectedTopicId, setSelectedTopicId] = useState(null);
-  const [completedProblems, setCompletedProblems] = useState(new Set());
+
+  // Load from localStorage on first render
+  const [completedProblems, setCompletedProblems] = useState(() => {
+    const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return saved ? new Set(JSON.parse(saved)) : new Set();
+  });
+
+  // Save to localStorage whenever completedProblems changes
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(Array.from(completedProblems)));
+  }, [completedProblems]);
 
   const toggleProblemComplete = (problemName) => {
     setCompletedProblems(prev => {
