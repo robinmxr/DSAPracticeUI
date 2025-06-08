@@ -1502,7 +1502,6 @@ Explanation: '*' means zero or more of the preceding element, 'a'. Therefore, by
     }
   };
 
-
 export const conceptsInfo = {
   "Two pointers technique": {
     description: "A technique where two pointers iterate through the data structure at different speeds or directions to solve problems efficiently. Common patterns include: opposite ends moving inward (for sorted arrays), fast/slow pointers (cycle detection), and sliding window variations. This approach often reduces time complexity from O(n²) to O(n) by avoiding nested loops. Used extensively in array problems, linked list cycle detection, and palindrome verification."
@@ -1603,7 +1602,7 @@ export const conceptsInfo = {
   "LIFO/FIFO operations": {
     description: "Two fundamental data access patterns that define how elements are added and removed from data structures. LIFO (Last In, First Out) describes stack behavior where the most recently added element is the first to be removed, like a stack of plates. FIFO (First In, First Out) describes queue behavior where the first element added is the first to be removed, like a line of people. Understanding these patterns is crucial for choosing appropriate data structures and for problems involving order dependencies, scheduling, and resource management."
   },
-  "Monotonic stack": {
+  "Monotonic Stack": {
     description: "A stack data structure where elements are maintained in a specific monotonic order - either strictly increasing or strictly decreasing from bottom to top. When a new element violates the monotonic property, elements are popped from the stack until the property is restored. Monotonic stacks are powerful for solving problems involving finding the next greater/smaller element, calculating areas in histograms, and solving range queries. They often transform O(n²) brute force solutions into efficient O(n) algorithms by avoiding redundant comparisons."
   },
   "Queue with stacks": {
@@ -1633,7 +1632,7 @@ export const conceptsInfo = {
   "Topological sort": {
     description: "An algorithm for linearly ordering the vertices of a directed acyclic graph (DAG) such that for every directed edge from vertex U to vertex V, U appears before V in the ordering. This ordering represents a valid sequence of operations when there are dependencies between tasks. Two main algorithms: Kahn's algorithm (BFS-based using in-degrees) and DFS-based approach (using finishing times). Topological sorting is essential for scheduling problems, build systems, course prerequisites, and any scenario involving dependency resolution."
   },
-  "Union-find": {
+  "Union find": {
     description: "A data structure that efficiently tracks a partition of a set into disjoint subsets, supporting two primary operations: Find (determine which subset an element belongs to) and Union (merge two subsets). Also known as Disjoint Set Union (DSU), it uses techniques like path compression and union by rank to achieve nearly constant amortized time complexity. Union-find is crucial for problems involving connectivity, equivalence relations, and dynamic connectivity queries. It's fundamental in algorithms like Kruskal's minimum spanning tree and detecting cycles in undirected graphs."
   },
   "Matrix traversal": {
@@ -1709,7 +1708,7 @@ export const conceptsInfo = {
     description: "A category of problems requiring finding the k largest, smallest, most frequent, or otherwise ranked elements from a collection. These problems often use heaps to maintain the top k elements efficiently without sorting the entire collection. Two main approaches: use a min-heap of size k for finding k largest elements, or max-heap of size k for k smallest elements. Top K problems teach important concepts about space-time tradeoffs and are common in data analysis, recommendation systems, and real-time analytics applications."
   },
   "Merge operations": {
-    description: "The fundamental process of combining multiple sorted data structures (arrays, lists, streams) into a single sorted output while maintaining the sorted property. Merge operations are the building blocks of merge sort and are used in external sorting algorithms for handling data that doesn't fit in memory. The basic algorithm uses multiple pointers to compare elements from input sources and selects the smallest (or largest) at each step. Advanced merge operations handle k-way merges and are crucial for distributed computing and database operations."
+    description: "The fundamental process of combining multiple sorted data structures (arrays, lists, streams) into a single sorted output while maintaining the sorted property. Merge operations are the building blocks of merge sort and are used in many divide-and-conquer algorithms. The basic algorithm uses multiple pointers to compare elements from input sources and selects the smallest (or largest) at each step. Advanced merge operations handle k-way merges and are crucial for distributed computing and database operations."
   },
   "Grid DP": {
     description: "Dynamic programming problems solved on 2D grids or matrices where the solution for each cell depends on solutions from neighboring cells, typically those above, left, or diagonally adjacent. Common patterns include path counting (number of ways to reach a destination), path optimization (minimum cost path), and area calculation problems. Grid DP often involves careful handling of boundaries, obstacle cells, and direction constraints. These problems teach important concepts about 2D state spaces and dependency relationships in multidimensional DP."
