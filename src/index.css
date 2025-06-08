@@ -6,7 +6,7 @@
 /* --- Dark Theme Base --- */
 body {
   @apply bg-gray-900 text-gray-100;
-  overflow-x: hidden;;
+  overflow-x: hidden;
 }
 
 .dsa-layout,
@@ -50,16 +50,39 @@ input, textarea, select {
   border-color: #353545 !important;
 }
 
+/* --- Fixed Button Hover States --- */
 button {
   @apply focus:outline-none;
   color: #e5e7eb;
+  transition: all 0.2s ease-in-out;
 }
 
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+button:disabled:hover {
+  transform: none !important;
+  background: inherit !important;
+  color: inherit !important;
+  border-color: inherit !important;
+}
+
+/* --- Link Hover Fixes --- */
 a {
   color: #60a5fa;
+  transition: color 0.2s ease-in-out;
 }
+
 a:hover {
   color: #3b82f6;
+  text-decoration: none;
 }
 
 /* --- Layout --- */
@@ -122,6 +145,7 @@ a:hover {
   background: #18181b;
 }
 
+/* --- Fixed Week Navigation Button Hovers --- */
 .week-nav-week-btn {
   flex: 1;
   padding: 0.75rem 1rem;
@@ -131,7 +155,7 @@ a:hover {
   color: #e5e7eb;
   border: none;
   border-radius: 0;
-  transition: background 0.2s, color 0.2s;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
   outline: none;
   display: flex;
@@ -139,16 +163,25 @@ a:hover {
   justify-content: space-between;
 }
 
-.week-nav-week-btn.active,
+.week-nav-week-btn.active {
+  background: #071e50 !important;
+  color: #fff !important;
+  border-left: 4px solid #103167;
+  transform: none !important;
+}
+
 .week-nav-week-btn:focus-visible {
   background: #071e50;
   color: #fff;
   border-left: 4px solid #103167;
+  outline: 2px solid #60a5fa;
+  outline-offset: -2px;
 }
 
-.week-nav-week-btn:hover:not(.active) {
+.week-nav-week-btn:hover:not(.active):not(:disabled) {
   background: #23232b;
   color: #fff;
+  transform: translateX(2px);
 }
 
 .week-nav-chevron-btn {
@@ -161,8 +194,15 @@ a:hover {
   display: flex;
   align-items: center;
   margin-left: 0.5rem;
+  transition: all 0.2s ease-in-out;
 }
 
+.week-nav-chevron-btn:hover {
+  color: #e5e7eb;
+  transform: scale(1.1);
+}
+
+/* --- Fixed Topic Button Hovers --- */
 .week-nav-topics {
   margin-bottom: 0.5rem;
   display: flex;
@@ -179,110 +219,136 @@ a:hover {
   background: none;
   color: #cbd5e1;
   border-bottom: 1px solid #353545;
-  transition: background 0.2s, color 0.2s, border 0.2s;
+  transition: all 0.2s ease-in-out;
   cursor: pointer;
   margin-bottom: 0.2rem;
   text-align: left;
 }
 
-.week-nav-topic-btn.active,
+.week-nav-topic-btn.active {
+  background: #013d57 !important;
+  color: #fff !important;
+  border-color: #133171 !important;
+  transform: none !important;
+}
+
 .week-nav-topic-btn:focus-visible {
   background: #013d57;
   color: #fff;
   border-color: #133171;
+  outline: 2px solid #60a5fa;
+  outline-offset: -2px;
 }
 
-.week-nav-topic-btn:hover:not(.active) {
+.week-nav-topic-btn:hover:not(.active):not(:disabled) {
   background: #23232b;
   color: #fff;
   border-color: #3b82f6;
+  transform: translateX(3px);
 }
 
-/* --- Card and Modal Tweaks --- */
-.rounded-lg {
-  border-radius: 0.75rem;
+/* --- Card Hover Improvements --- */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.shadow-lg {
-  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.25);
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-/* --- Hide Scrollbars for a Cleaner Look --- */
-::-webkit-scrollbar {
-  width: 8px;
-  background: #23232b;
-}
-::-webkit-scrollbar-thumb {
-  background: #2d2d36;
-  border-radius: 4px;
-}
-
-/* --- Minimal Border Color for Cards --- */
-.border-gray-200, .border-gray-300 {
-  border-color: #2d2d36 !important;
-}
-
-/* --- Modal Overlay */
-.problem-modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-}
-
-/* Modal Box */
-.problem-modal-box {
-  background: #23232b;
-  border-radius: 0.75rem;
-  padding: 2.5rem 2rem;
-  max-width: 60rem;      /* Increased from 40rem */
-  width: 90vw;           /* Use most of the viewport width */
-  max-height: 90vh;      /* Slightly taller */
-  overflow-y: auto;
-  border: 1px solid #353545;
-  box-shadow: 0 8px 32px 0 rgba(0,0,0,0.45);
-  color: #e5e7eb;
+/* --- Progress Card Specific Hovers --- */
+.progress-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  overflow: hidden;
 }
 
-/* --- Problem Link Style --- */
+.progress-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+  transition: left 0.5s;
+}
+
+.progress-card:hover::before {
+  left: 100%;
+}
+
+.progress-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Modal Button Hover Fixes --- */
+.modal-button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.modal-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* --- Problem Link Enhanced Hovers --- */
 .problem-link {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
-  color: #93c5fd; /* blue-300 */
+  color: #93c5fd;
   font-weight: 500;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px 0 rgba(30,41,59,0.10);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(30, 41, 59, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.problem-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+  transition: left 0.4s;
+}
+
+.problem-link:hover::before {
+  left: 100%;
 }
 
 .problem-link:hover, .problem-link:focus {
   background: linear-gradient(90deg, #0b1e47 0%, #1e293b 100%);
   color: #fff;
-  box-shadow: 0 4px 16px 0 rgba(37,99,235,0.15);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.2);
   text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.problem-link:active {
+  transform: translateY(0);
 }
 
 .problem-link .font-medium {
   color: inherit !important;
+  transition: color 0.2s;
 }
 
-.problem-link .text-xs {
-  margin-left: 0.5rem;
-}
-
-.problem-link .text-sm {
-  margin-left: 0.5rem;
-}
-
-/* --- Problem Tag Style --- */
+/* --- Problem Tag Enhanced Hovers --- */
 .problem-link .problem-tag {
   background: #1e293b;
   color: #60a5fa;
@@ -292,22 +358,155 @@ a:hover {
   font-weight: 500;
   letter-spacing: 0.02em;
   margin-left: 0.25rem;
-  box-shadow: 0 1px 3px 0 rgba(30,41,59,0.10);
+  box-shadow: 0 1px 3px rgba(30, 41, 59, 0.1);
   border: 1px solid #233056;
-  transition: background 0.18s, color 0.18s, border 0.18s;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.problem-link .problem-tag:hover {
+.problem-link:hover .problem-tag {
   background: #2563eb;
   color: #fff;
   border-color: #2563eb;
+  transform: scale(1.05);
 }
 
-/* --- Responsive --- */
-
+/* --- Footer Link Improvements --- */
 footer a {
-  transition: color 0.18s;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
+
+footer a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 50%;
+  background-color: #60a5fa;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 footer a:hover {
   color: #60a5fa;
+  transform: translateY(-1px);
+}
+
+footer a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* --- Reset Button Specific Hovers --- */
+.reset-button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reset-button:hover:not(:disabled) {
+  background: rgba(239, 68, 68, 0.1) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+  color: #fca5a5 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+.reset-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* --- Card and Modal Tweaks --- */
+.rounded-lg {
+  border-radius: 0.75rem;
+}
+
+.shadow-lg {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* --- Hide Scrollbars for a Cleaner Look --- */
+::-webkit-scrollbar {
+  width: 8px;
+  background: #23232b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2d2d36;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3d3d46;
+}
+
+/* --- Minimal Border Color for Cards --- */
+.border-gray-200, .border-gray-300 {
+  border-color: #2d2d36 !important;
+}
+
+/* --- Modal Overlay with Better Backdrop --- */
+.problem-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Modal Box with Enhanced Appearance */
+.problem-modal-box {
+  background: #23232b;
+  border-radius: 1rem;
+  padding: 2.5rem 2rem;
+  max-width: 60rem;
+  width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid #353545;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+  color: #e5e7eb;
+  position: relative;
+  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Focus States for Accessibility --- */
+*:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+/* --- Smooth Transitions for All Interactive Elements --- */
+* {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }

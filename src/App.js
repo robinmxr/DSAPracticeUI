@@ -33,38 +33,53 @@ const App = () => {
     });
   };
 
+  const resetProgress = () => {
+    setCompletedProblems(new Set());
+    // Optionally, you might want to reset other state as well
+    setActiveWeek(1);
+    setSelectedTopicId(null);
+    
+    // Clear from localStorage
+    localStorage.removeItem('completedProblems');
+    localStorage.removeItem('activeWeek');
+    localStorage.removeItem('selectedTopicId');
+  };
+
   return (
     <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <DSAMasteryPlan
-              activeWeek={activeWeek}
-              setActiveWeek={setActiveWeek}
-              selectedTopicId={selectedTopicId}
-              setSelectedTopicId={setSelectedTopicId}
-              completedProblems={completedProblems}
-              toggleProblemComplete={toggleProblemComplete}
-            />
-          }
-        />
-        <Route
-          path="/problem/:problemId"
-          element={
-            <ProblemPage
-              practiceProblems={practiceProblems}
-              completedProblems={completedProblems}
-              toggleProblemComplete={toggleProblemComplete}
-              activeWeek={activeWeek}
-              setActiveWeek={setActiveWeek}
-              selectedTopicId={selectedTopicId}
-              setSelectedTopicId={setSelectedTopicId}
-              learningPlan={learningPlan}
-            />
-          }
-        />
-      </Routes>
+      <div className="min-h-screen bg-[#0f1117]">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <DSAMasteryPlan
+                activeWeek={activeWeek}
+                setActiveWeek={setActiveWeek}
+                selectedTopicId={selectedTopicId}
+                setSelectedTopicId={setSelectedTopicId}
+                completedProblems={completedProblems}
+                toggleProblemComplete={toggleProblemComplete}
+                resetProgress={resetProgress}
+              />
+            }
+          />
+          <Route
+            path="/problem/:problemId"
+            element={
+              <ProblemPage
+                practiceProblems={practiceProblems}
+                completedProblems={completedProblems}
+                toggleProblemComplete={toggleProblemComplete}
+                activeWeek={activeWeek}
+                setActiveWeek={setActiveWeek}
+                selectedTopicId={selectedTopicId}
+                setSelectedTopicId={setSelectedTopicId}
+                learningPlan={learningPlan}
+              />
+            }
+          />
+        </Routes>
+      </div>
     </Router>
   );
 };
