@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { TrendingUp, BookOpen, Trophy, RotateCcw, AlertTriangle, User, Mail, Globe, Sparkles } from 'lucide-react';
 import DSALayout from './components/DSALayout';
 import WeekContent from './components/WeekContent';
@@ -15,6 +15,17 @@ const DSAMasteryPlan = ({
   resetProgress
 }) => {
   const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const weekContentRef = useRef(null);
+
+  // Scroll to week content when selectedTopicId changes
+  useEffect(() => {
+    if (selectedTopicId && weekContentRef.current) {
+      weekContentRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }, [selectedTopicId]);
 
   const getCompletedTopics = () => {
     const completed = new Set();
@@ -48,7 +59,7 @@ const DSAMasteryPlan = ({
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/30 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <DSALayout
         activeWeek={activeWeek}
         setActiveWeek={setActiveWeek}
@@ -61,76 +72,117 @@ const DSAMasteryPlan = ({
         totalProblems={totalProblems}
         problemProgress={problemProgress}
       >
-        <div className="max-w-6xl mx-auto space-y-12">
-          {/* Hero Section */}
-          <div className="text-center py-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded-full text-sm font-medium mb-6">
-              <Sparkles size={16} />
-              <span>Structured Learning Path</span>
+        <div className="max-w-6xl mx-auto space-y-16">
+          {/* Clean Hero Section */}
+          <div className="text-center py-16 relative">
+            <div className="relative z-10 max-w-4xl mx-auto">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50 text-slate-600 dark:text-slate-400 rounded-full text-sm font-medium mb-8 shadow-sm">
+                <Sparkles size={16} className="text-amber-500" />
+                <span>Structured Learning Path</span>
+              </div>
+              
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 text-slate-900 dark:text-white leading-tight">
+                Data Structures &<br />
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Algorithms
+                </span>
+              </h1>
+              
+              <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed mb-8">
+                12-week curriculum designed for technical interview preparation with 
+                <span className="text-slate-800 dark:text-slate-300 font-semibold"> focused learning</span>
+              </p>
+
+              <div className="flex items-center justify-center gap-8 text-sm">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span className="text-slate-600 dark:text-slate-400">12 Weeks</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+                  <span className="text-slate-600 dark:text-slate-400">{totalTopics} Topics</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                  <span className="text-slate-600 dark:text-slate-400">{totalProblems} Problems</span>
+                </div>
+              </div>
             </div>
-            
-            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-4">
-              Data Structures & Algorithms
-            </h1>
-            
-            <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-              12-week curriculum for technical interview preparation
-            </p>
           </div>
 
           {/* Stats Cards */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-sm border border-slate-200 dark:border-slate-700">
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
-                  <TrendingUp className="text-blue-600 dark:text-blue-400" size={20} />
+            {/* Current Week Card */}
+            <div className="group relative overflow-hidden bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+              <div className="relative z-10">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-sm">
+                    <TrendingUp className="text-white" size={20} />
+                  </div>
+                  <span className="text-2xl font-bold text-slate-900 dark:text-white">
+                    Week {activeWeek}
+                  </span>
                 </div>
-                <span className="text-2xl font-bold text-slate-900 dark:text-white">Week {activeWeek}</span>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">Current Week</p>
               </div>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">Current Week</p>
             </div>
 
-            <div className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-sm border border-slate-200 dark:border-slate-700">
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center">
-                  <BookOpen className="text-emerald-600 dark:text-emerald-400" size={20} />
+            {/* Topics Progress Card */}
+            <div className="group relative overflow-hidden bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+              <div className="relative z-10">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-green-600 rounded-xl flex items-center justify-center shadow-sm">
+                    <BookOpen className="text-white" size={20} />
+                  </div>
+                  <span className="text-2xl font-bold text-slate-900 dark:text-white">
+                    {topicProgress}%
+                  </span>
                 </div>
-                <span className="text-2xl font-bold text-slate-900 dark:text-white">{topicProgress}%</span>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
+                  {completedTopicsCount}/{totalTopics} Topics
+                </p>
               </div>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">{completedTopicsCount}/{totalTopics} Topics</p>
             </div>
 
-            <div className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-sm border border-slate-200 dark:border-slate-700">
-              <div className="flex items-center justify-between">
-                <div className="w-10 h-10 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center">
-                  <Trophy className="text-purple-600 dark:text-purple-400" size={20} />
+            {/* Problems Progress Card */}
+            <div className="group relative overflow-hidden bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+              <div className="relative z-10">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center shadow-sm">
+                    <Trophy className="text-white" size={20} />
+                  </div>
+                  <span className="text-2xl font-bold text-slate-900 dark:text-white">
+                    {problemProgress}%
+                  </span>
                 </div>
-                <span className="text-2xl font-bold text-slate-900 dark:text-white">{problemProgress}%</span>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
+                  {completedProblemsCount}/{totalProblems} Problems
+                </p>
               </div>
-              <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">{completedProblemsCount}/{totalProblems} Problems</p>
             </div>
 
-            <div className="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-sm border border-slate-200 dark:border-slate-700">
-              <div className="flex flex-col items-center justify-center h-full">
+            {/* Reset Button Card */}
+            <div className="group relative overflow-hidden bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-2xl p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+              <div className="relative z-10 flex flex-col items-center justify-center h-full">
                 <button
                   onClick={() => setShowResetConfirm(true)}
                   disabled={completedProblemsCount === 0 && completedTopicsCount === 0}
-                  className="w-10 h-10 bg-red-100 dark:bg-red-900/30 hover:bg-red-200 dark:hover:bg-red-900/50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors rounded-lg flex items-center justify-center mb-2"
+                  className="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-600 hover:from-red-600 hover:to-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 rounded-xl flex items-center justify-center mb-3 shadow-sm hover:shadow-md transform hover:rotate-12"
                 >
-                  <RotateCcw className="text-red-600 dark:text-red-400" size={20} />
+                  <RotateCcw className="text-white" size={20} />
                 </button>
-                <p className="text-sm text-slate-600 dark:text-slate-400 text-center">Reset Progress</p>
+                <p className="text-sm font-medium text-slate-600 dark:text-slate-400 text-center">Reset Progress</p>
               </div>
             </div>
           </div>
 
           {/* Reset Modal */}
           {showResetConfirm && (
-            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-              <div className="bg-white dark:bg-slate-800 rounded-lg p-8 max-w-md w-full">
-                <div className="text-center mb-6">
+            <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+              <div className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl rounded-2xl p-8 max-w-md w-full border border-slate-200/50 dark:border-slate-700/50 shadow-xl">
+                <div className="text-center mb-8">
                   <div className="w-16 h-16 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <AlertTriangle className="text-red-600 dark:text-red-400" size={32} />
+                    <AlertTriangle className="text-red-500" size={32} />
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Reset Progress?</h3>
                   <p className="text-slate-600 dark:text-slate-400">This will clear all tracked progress permanently.</p>
@@ -139,13 +191,13 @@ const DSAMasteryPlan = ({
                 <div className="flex gap-3">
                   <button
                     onClick={() => setShowResetConfirm(false)}
-                    className="flex-1 px-4 py-2 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-900 dark:text-white rounded-lg transition-colors"
+                    className="flex-1 px-4 py-3 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-900 dark:text-white rounded-xl transition-all duration-300 font-medium"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={handleResetProgress}
-                    className="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+                    className="flex-1 px-4 py-3 bg-gradient-to-r from-red-500 to-orange-600 hover:from-red-600 hover:to-orange-700 text-white rounded-xl transition-all duration-300 font-medium shadow-sm"
                   >
                     Reset
                   </button>
@@ -154,63 +206,69 @@ const DSAMasteryPlan = ({
             </div>
           )}
 
-          {/* Week Content */}
-          <WeekContent
-            week={activeWeek}
-            learningPlan={learningPlan}
-            completedTopics={completedTopics}
-            practiceProblems={practiceProblems}
-            completedProblems={completedProblems}
-            toggleProblemComplete={toggleProblemComplete}
-            selectedTopicId={selectedTopicId}
-          />
+          {/* Week Content - Add ref here */}
+          <div ref={weekContentRef} className="relative">
+            <WeekContent
+              week={activeWeek}
+              learningPlan={learningPlan}
+              completedTopics={completedTopics}
+              practiceProblems={practiceProblems}
+              completedProblems={completedProblems}
+              toggleProblemComplete={toggleProblemComplete}
+              selectedTopicId={selectedTopicId}
+            />
+          </div>
 
           <DailyStudyTips />
         </div>
       </DSALayout>
 
-      {/* Footer - Outside of the layout */}
+      {/* Footer */}
       <div className="lg:pl-80">
-        <footer className="border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+        <footer className="border-t border-slate-200/50 dark:border-slate-700/50 bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm">
           <div className="max-w-6xl mx-auto px-6 py-8">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-sm">
                   <User size={20} className="text-white" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-900 dark:text-white">Reajul Islam Robin</h4>
-                  <p className="text-sm text-slate-600 dark:text-slate-400">Software Engineer</p>
+                  <h4 className="font-bold text-slate-900 dark:text-white">Reajul Islam Robin</h4>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">Software Engineer</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
                 <a 
                   href="mailto:reajulbd786@gmail.com" 
-                  className="flex items-center gap-2 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-white/60 dark:bg-slate-700/60 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all duration-300 rounded-xl border border-slate-200/50 dark:border-slate-600/50 hover:shadow-sm group"
                 >
-                  <Mail size={16} />
-                  <span className="text-sm">Contact</span>
+                  <Mail size={16} className="group-hover:text-blue-500 transition-colors" />
+                  <span className="font-medium">Contact</span>
                 </a>
                 <a
                   href="https://robinislam.me"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors"
+                  className="flex items-center gap-2 px-4 py-2 bg-white/60 dark:bg-slate-700/60 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all duration-300 rounded-xl border border-slate-200/50 dark:border-slate-600/50 hover:shadow-sm group"
                 >
-                  <Globe size={16} />
-                  <span className="text-sm">Portfolio</span>
+                  <Globe size={16} className="group-hover:text-purple-500 transition-colors" />
+                  <span className="font-medium">Portfolio</span>
                 </a>
               </div>
 
-              <div className="flex gap-4">
-                <div className="text-center">
-                  <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400">{completedTopicsCount}/{totalTopics}</div>
-                  <div className="text-xs text-slate-500">Topics</div>
+              <div className="flex gap-6 text-center">
+                <div>
+                  <div className="text-xl font-bold text-emerald-600 dark:text-emerald-400">
+                    {completedTopicsCount}/{totalTopics}
+                  </div>
+                  <div className="text-xs text-slate-500 dark:text-slate-500 font-medium">Topics</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-lg font-bold text-purple-600 dark:text-purple-400">{completedProblemsCount}/{totalProblems}</div>
-                  <div className="text-xs text-slate-500">Problems</div>
+                <div>
+                  <div className="text-xl font-bold text-purple-600 dark:text-purple-400">
+                    {completedProblemsCount}/{totalProblems}
+                  </div>
+                  <div className="text-xs text-slate-500 dark:text-slate-500 font-medium">Problems</div>
                 </div>
               </div>
             </div>
