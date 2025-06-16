@@ -6,6 +6,10 @@ import ProblemPage from './components/ProblemPage';
 const App = () => {
   const [activeWeek, setActiveWeek] = useState(1);
   const [selectedTopicId, setSelectedTopicId] = useState(null);
+  const [isSidebarMinimized, setIsSidebarMinimized] = useState(() => {
+    const saved = localStorage.getItem('sidebarMinimized');
+    return saved ? JSON.parse(saved) : false;
+  });
   const [completedProblems, setCompletedProblems] = useState(() => {
     const saved = localStorage.getItem('completedProblems');
     return saved ? new Set(JSON.parse(saved)) : new Set();
@@ -14,6 +18,10 @@ const App = () => {
   useEffect(() => {
     localStorage.setItem('completedProblems', JSON.stringify([...completedProblems]));
   }, [completedProblems]);
+
+  useEffect(() => {
+    localStorage.setItem('sidebarMinimized', JSON.stringify(isSidebarMinimized));
+  }, [isSidebarMinimized]);
 
   const toggleProblemComplete = (problemName) => {
     setCompletedProblems(prev => {
@@ -27,41 +35,42 @@ const App = () => {
     });
   };
 
+  const toggleSidebarMinimized = () => {
+    setIsSidebarMinimized(prev => !prev);
+  };
+
   const resetProgress = () => {
     setCompletedProblems(new Set());
-    localStorage.removeItem('completedProblems');
+    setSelectedTopicId(null);
+    setActiveWeek(1);
   };
 
   return (
     <Router>
       <Routes>
-        <Route 
-          path="/" 
-          element={
-            <DSAMasteryPlan
-              activeWeek={activeWeek}
-              setActiveWeek={setActiveWeek}
-              selectedTopicId={selectedTopicId}
-              setSelectedTopicId={setSelectedTopicId}
-              completedProblems={completedProblems}
-              toggleProblemComplete={toggleProblemComplete}
-              resetProgress={resetProgress}
-            />
-          } 
-        />
-        <Route 
-          path="/problem/:problemName" 
-          element={
-            <ProblemPage
-              activeWeek={activeWeek}
-              setActiveWeek={setActiveWeek}
-              selectedTopicId={selectedTopicId}
-              setSelectedTopicId={setSelectedTopicId}
-              completedProblems={completedProblems}
-              toggleProblemComplete={toggleProblemComplete}
-            />
-          } 
-        />
+        <Route path="/" element={
+          <DSAMasteryPlan
+            activeWeek={activeWeek}
+            setActiveWeek={setActiveWeek}
+            selectedTopicId={selectedTopicId}
+            setSelectedTopicId={setSelectedTopicId}
+            completedProblems={completedProblems}
+            toggleProblemComplete={toggleProblemComplete}
+            resetProgress={resetProgress}
+            isSidebarMinimized={isSidebarMinimized}
+            toggleSidebarMinimized={toggleSidebarMinimized}
+          />
+        } />
+        <Route path="/problem/:problemName" element={
+          <ProblemPage
+            completedProblems={completedProblems}
+            toggleProblemComplete={toggleProblemComplete}
+            activeWeek={activeWeek}
+            setActiveWeek={setActiveWeek}
+            selectedTopicId={selectedTopicId}  
+            setSelectedTopicId={setSelectedTopicId}
+          />
+        } />
       </Routes>
     </Router>
   );

@@ -1,6 +1,16 @@
 {
-  "name": "dsa-mastery-plan",
-  "version": "0.1.0",
+  "name": "Algomist",
+  "version": "1.0.0",
+  "description": "Embark on a quest to conquer algorithms - A 6-week algorithmic adventure",
+  "keywords": [
+    "algorithms",
+    "data-structures",
+    "coding-challenges",
+    "technical-interviews",
+    "programming",
+    "quest",
+    "learning"
+  ],
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
