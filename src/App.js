@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DSAMasteryPlan from './DSAMasteryPlan';
 import ProblemPage from './components/ProblemPage';
+import ConceptPage from './components/ConceptPage';
 
 const App = () => {
   const [activeWeek, setActiveWeek] = useState(1);
@@ -71,6 +72,17 @@ const App = () => {
             setSelectedTopicId={setSelectedTopicId}
           />
         } />
+        <Route 
+          path="/concept/:conceptName" 
+          element={
+            <ConceptPage 
+              activeWeek={activeWeek}
+              setActiveWeek={setActiveWeek}
+              selectedTopicId={selectedTopicId}
+              setSelectedTopicId={setSelectedTopicId}
+            />
+          } 
+        />
       </Routes>
     </Router>
   );

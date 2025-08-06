@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, BookOpen, Lightbulb, Target, Eye, EyeOff, CheckCircle, Circle, Code, Brain, Zap } from 'lucide-react';
+import { ArrowLeft, BookOpen, Lightbulb, Target, Eye, EyeOff, CheckCircle, Circle, Code, Brain, Zap, ExternalLink } from 'lucide-react';
 import { practiceProblems } from '../data/planData';
-import { conceptsInfo } from "../data/conceptsInfo";
 import { learningPlan } from "../data/learningPlan";
-import ConceptModal from './ConceptModal';
 import DSALayout from './DSALayout';
+import Footer from './Footer';
 
 const ProblemPage = ({
   completedProblems = new Set(),
@@ -17,7 +16,6 @@ const ProblemPage = ({
 }) => {
   const { problemName } = useParams();
   const navigate = useNavigate();
-  const [selectedConcept, setSelectedConcept] = useState(null);
   const [showApproach, setShowApproach] = useState(false);
 
   // Decode the problem name from URL
@@ -169,6 +167,237 @@ const ProblemPage = ({
     }
   };
 
+  const getTimeEstimate = (difficulty) => {
+    switch (difficulty?.toLowerCase()) {
+      case 'easy': return '15-25';
+      case 'medium': return '25-45';
+      case 'hard': return '45-90';
+      default: return '25-45';
+    }
+  };
+
+  // Add function to handle concept navigation
+  const handleConceptClick = (concept) => {
+    const encodedConcept = encodeURIComponent(concept);
+    navigate(`/concept/${encodedConcept}`);
+  };
+
+  // Enhanced function to handle LeetCode navigation with better problem matching
+  const handleLeetCodeSearch = () => {
+    // Create multiple search strategies for better matching
+    const problemName = decodedProblemName.toLowerCase();
+    
+    // Common problem name mappings for better LeetCode matching
+    const leetcodePatterns = {
+      // Week 1 - Arrays & Strings
+      'two sum': 'two-sum',
+      'best time to buy and sell stock': 'best-time-to-buy-and-sell-stock',
+      'contains duplicate': 'contains-duplicate',
+      'product of array except self': 'product-of-array-except-self',
+      'maximum subarray': 'maximum-subarray',
+      'container with most water': 'container-with-most-water',
+      '3sum': '3sum',
+      'search in rotated sorted array': 'search-in-rotated-sorted-array',
+      'find first and last position of element in sorted array': 'find-first-and-last-position-of-element-in-sorted-array',
+      'find first and last position in sorted array': 'find-first-and-last-position-of-element-in-sorted-array',
+      'search a 2d matrix': 'search-a-2d-matrix',
+      'koko eating bananas': 'koko-eating-bananas',
+      '4sum': '4sum',
+      'remove duplicates from sorted array': 'remove-duplicates-from-sorted-array',
+      'trapping rain water': 'trapping-rain-water',
+      'valid anagram': 'valid-anagram',
+      'valid palindrome': 'valid-palindrome',
+      'longest substring without repeating': 'longest-substring-without-repeating-characters',
+      'longest substring without repeating characters': 'longest-substring-without-repeating-characters',
+      'longest repeating character replacement': 'longest-repeating-character-replacement',
+      'group anagrams': 'group-anagrams',
+      'longest palindromic substring': 'longest-palindromic-substring',
+      'palindromic substrings': 'palindromic-substrings',
+      'valid parentheses': 'valid-parentheses',
+      'encode and decode strings': 'encode-and-decode-strings',
+      'string to integer (atoi)': 'string-to-integer-atoi',
+      'string to integer atoi': 'string-to-integer-atoi',
+      'minimum window substring': 'minimum-window-substring',
+
+      // Week 2 - Linked Lists
+      'reverse linked list': 'reverse-linked-list',
+      'merge two sorted lists': 'merge-two-sorted-lists',
+      'linked list cycle': 'linked-list-cycle',
+      'remove nth node from end': 'remove-nth-node-from-end-of-list',
+      'remove nth node from end of list': 'remove-nth-node-from-end-of-list',
+      'reorder list': 'reorder-list',
+      'add two numbers': 'add-two-numbers',
+      'copy list with random pointer': 'copy-list-with-random-pointer',
+      'find duplicate number': 'find-the-duplicate-number',
+      'lru cache': 'lru-cache',
+      'remove duplicates from sorted list': 'remove-duplicates-from-sorted-list',
+      'palindrome linked list': 'palindrome-linked-list',
+      'intersection of two linked lists': 'intersection-of-two-linked-lists',
+      'reverse nodes in k-group': 'reverse-nodes-in-k-group',
+      'merge k sorted lists': 'merge-k-sorted-lists',
+
+      // Week 2 - Stacks & Queues
+      'min stack': 'min-stack',
+      'evaluate reverse polish notation': 'evaluate-reverse-polish-notation',
+      'daily temperatures': 'daily-temperatures',
+      'car fleet': 'car-fleet',
+      'implement queue using stacks': 'implement-queue-using-stacks',
+      'next greater element i': 'next-greater-element-i',
+      'next greater element ii': 'next-greater-element-ii',
+      'largest rectangle in histogram': 'largest-rectangle-in-histogram',
+
+      // Week 3 - Binary Trees
+      'maximum depth of binary tree': 'maximum-depth-of-binary-tree',
+      'same tree': 'same-tree',
+      'invert binary tree': 'invert-binary-tree',
+      'binary tree level order traversal': 'binary-tree-level-order-traversal',
+      'subtree of another tree': 'subtree-of-another-tree',
+      'lowest common ancestor of bst': 'lowest-common-ancestor-of-a-binary-search-tree',
+      'lowest common ancestor of a binary search tree': 'lowest-common-ancestor-of-a-binary-search-tree',
+      'binary tree right side view': 'binary-tree-right-side-view',
+      'count good nodes in binary tree': 'count-good-nodes-in-binary-tree',
+      'validate binary search tree': 'validate-binary-search-tree',
+      'kth smallest element in bst': 'kth-smallest-element-in-a-bst',
+      'kth smallest element in a bst': 'kth-smallest-element-in-a-bst',
+      'construct binary tree from preorder and inorder': 'construct-binary-tree-from-preorder-and-inorder-traversal',
+      'construct binary tree from preorder and inorder traversal': 'construct-binary-tree-from-preorder-and-inorder-traversal',
+      'diameter of binary tree': 'diameter-of-binary-tree',
+      'balanced binary tree': 'balanced-binary-tree',
+      'symmetric tree': 'symmetric-tree',
+      'path sum': 'path-sum',
+      'binary tree zigzag level order': 'binary-tree-zigzag-level-order-traversal',
+      'binary tree zigzag level order traversal': 'binary-tree-zigzag-level-order-traversal',
+      'binary tree maximum path sum': 'binary-tree-maximum-path-sum',
+      'serialize and deserialize binary tree': 'serialize-and-deserialize-binary-tree',
+
+      // Week 4 - Graphs
+      'number of islands': 'number-of-islands',
+      'clone graph': 'clone-graph',
+      'pacific atlantic water flow': 'pacific-atlantic-water-flow',
+      'course schedule': 'course-schedule',
+      'course schedule ii': 'course-schedule-ii',
+      'number of connected components': 'number-of-connected-components-in-an-undirected-graph',
+      'graph valid tree': 'graph-valid-tree',
+      'rotting oranges': 'rotting-oranges',
+      'word ladder': 'word-ladder',
+      'surrounded regions': 'surrounded-regions',
+      'max area of island': 'max-area-of-island',
+      'walls and gates': 'walls-and-gates',
+
+      // Week 4 - Trie
+      'implement trie': 'implement-trie-prefix-tree',
+      'design add and search words': 'design-add-and-search-words-data-structure',
+      'word search ii': 'word-search-ii',
+
+      // Week 5 - 1D Dynamic Programming
+      'climbing stairs': 'climbing-stairs',
+      'min cost climbing stairs': 'min-cost-climbing-stairs',
+      'house robber': 'house-robber',
+      'house robber ii': 'house-robber-ii',
+      'longest palindromic subsequence': 'longest-palindromic-subsequence',
+      'decode ways': 'decode-ways',
+      'coin change': 'coin-change',
+      'maximum product subarray': 'maximum-product-subarray',
+      'word break': 'word-break',
+      'longest increasing subsequence': 'longest-increasing-subsequence',
+      'partition equal subset sum': 'partition-equal-subset-sum',
+      'jump game': 'jump-game',
+      'jump game ii': 'jump-game-ii',
+
+      // Week 6 - Backtracking
+      'subsets': 'subsets',
+      'combination sum': 'combination-sum',
+      'permutations': 'permutations',
+      'subsets ii': 'subsets-ii',
+      'combination sum ii': 'combination-sum-ii',
+      'word search': 'word-search',
+      'palindrome partitioning': 'palindrome-partitioning',
+      'letter combinations of phone number': 'letter-combinations-of-a-phone-number',
+      'letter combinations of a phone number': 'letter-combinations-of-a-phone-number',
+      'generate parentheses': 'generate-parentheses',
+      'n-queens': 'n-queens',
+
+      // Week 6 - Heaps
+      'kth largest element in array': 'kth-largest-element-in-an-array',
+      'top k frequent elements': 'top-k-frequent-elements',
+      'find median from data stream': 'find-median-from-data-stream',
+      'task scheduler': 'task-scheduler',
+      'design twitter': 'design-twitter',
+      'k closest points to origin': 'k-closest-points-to-origin',
+      'last stone weight': 'last-stone-weight',
+
+      // Week 6 - 2D Dynamic Programming
+      'unique paths': 'unique-paths',
+      'longest common subsequence': 'longest-common-subsequence',
+      'best time to buy/sell stock with cooldown': 'best-time-to-buy-and-sell-stock-with-cooldown',
+      'best time to buy and sell stock with cooldown': 'best-time-to-buy-and-sell-stock-with-cooldown',
+      'coin change 2': 'coin-change-2',
+      'target sum': 'target-sum',
+      'interleaving string': 'interleaving-string',
+      'unique paths ii': 'unique-paths-ii',
+      'minimum path sum': 'minimum-path-sum',
+      'edit distance': 'edit-distance',
+      'regular expression matching': 'regular-expression-matching',
+
+      // Additional common variations and legacy mappings
+      'roman to integer': 'roman-to-integer',
+      'longest common prefix': 'longest-common-prefix',
+      'swap nodes in pairs': 'swap-nodes-in-pairs',
+      'implement strstr': 'implement-strstr',
+      'search insert position': 'search-insert-position',
+      'merge sorted array': 'merge-sorted-array',
+      'binary tree inorder traversal': 'binary-tree-inorder-traversal',
+      'convert sorted array to binary search tree': 'convert-sorted-array-to-binary-search-tree',
+      'minimum depth of binary tree': 'minimum-depth-of-binary-tree',
+      'binary tree preorder traversal': 'binary-tree-preorder-traversal',
+      'binary tree postorder traversal': 'binary-tree-postorder-traversal',
+      'reverse integer': 'reverse-integer',
+      'palindrome number': 'palindrome-number',
+      'median of two sorted arrays': 'median-of-two-sorted-arrays'
+    };
+
+    // Check if we have a direct mapping
+    const directMatch = leetcodePatterns[problemName];
+    if (directMatch) {
+      const directUrl = `https://leetcode.com/problems/${directMatch}/`;
+      window.open(directUrl, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    // Try to create a slug from the problem name
+    const slugAttempt = problemName
+      .replace(/[^\w\s]/g, '') // Remove special characters
+      .replace(/\s+/g, '-') // Replace spaces with hyphens
+      .replace(/-+/g, '-') // Remove multiple consecutive hyphens
+      .replace(/^-|-$/g, '') // Remove leading/trailing hyphens
+      .toLowerCase();
+
+    // Try the generated slug first
+    const potentialUrl = `https://leetcode.com/problems/${slugAttempt}/`;
+    
+    // We'll try to open it directly, and if it fails, fallback to search
+    // Since we can't easily check if the URL exists due to CORS, we'll use a different approach
+    
+    // For now, let's create a more intelligent search
+    const searchTerms = [
+      problemName, // Original name
+      slugAttempt.replace(/-/g, ' '), // Slug converted back to words
+      // Extract key words (remove common words)
+      problemName.replace(/\b(of|the|a|an|in|on|at|to|for|with|by)\b/g, '').trim()
+    ].filter(term => term.length > 0);
+
+    // Use the best search term
+    const bestSearchTerm = searchTerms[0];
+    const searchUrl = `https://leetcode.com/problemset/all/?search=${encodeURIComponent(bestSearchTerm)}`;
+    
+    // Open search page with the problem name
+    window.open(searchUrl, '_blank', 'noopener,noreferrer');
+    
+    // Also provide a notification about the direct URL attempt
+    console.log(`Searching for: "${bestSearchTerm}"`);
+    console.log(`Direct URL attempt: ${potentialUrl}`);
+  };
+
   return (
     <DSALayout
       activeWeek={activeWeek}
@@ -182,7 +411,9 @@ const ProblemPage = ({
       totalProblems={totalProblems}
       problemProgress={problemProgress}
     >
-      <div className="sticky top-0 z-50  backdrop-blur-md mb-8">
+      <div 
+        className="sticky"
+      >
         <div className="flex items-center justify-between py-4 px-4 sm:px-6 max-w-7xl mx-auto">
           <div className="flex-1 min-w-0 mr-4">
             <button
@@ -193,16 +424,12 @@ const ProblemPage = ({
                 size={18} 
                 className="flex-shrink-0 transition-all duration-300 group-hover:-translate-x-0.5 group-hover:text-blue-400" 
               />
-              <span className="whitespace-nowrap">Back to Quest Overview</span>
+              <span className="whitespace-nowrap">Back</span>
             </button>
           </div>
           
           <div className="flex items-center gap-3 flex-shrink-0">
-            {combinedData.difficulty && (
-              <div className={`px-3 py-1.5 rounded-xl text-xs font-bold border backdrop-blur-sm ${getDifficultyColor(combinedData.difficulty)} flex-shrink-0`}>
-                {combinedData.difficulty.toUpperCase()}
-              </div>
-            )}
+            {/* Only keep the completion button */}
             <button
               onClick={handleToggleComplete}
               className={`group flex items-center gap-2.5 px-5 py-2.5 rounded-xl font-semibold transition-all duration-300 text-sm backdrop-blur-sm shadow-lg hover:shadow-xl active:scale-[0.98] hover:scale-[1.02] ${
@@ -248,12 +475,41 @@ const ProblemPage = ({
               <Code size={16} className="text-blue-400" />
               <span className="text-sm font-medium text-blue-300">AlgoMist Challenge</span>
             </div>
+            
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent break-words">
               {decodedProblemName}
             </h1>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              Navigate through the algorithmic mist and master coding challenges with clarity and precision
-            </p>
+
+            {/* Difficulty and Time Estimate */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-8">
+              {/* Difficulty Badge */}
+              <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl border backdrop-blur-sm font-semibold text-sm ${getDifficultyColor(combinedData.difficulty)}`}>
+                <div className={`w-2 h-2 rounded-full ${
+                  combinedData.difficulty?.toLowerCase() === 'easy' ? 'bg-green-400' :
+                  combinedData.difficulty?.toLowerCase() === 'medium' ? 'bg-yellow-400' :
+                  combinedData.difficulty?.toLowerCase() === 'hard' ? 'bg-red-400' : 'bg-blue-400'
+                }`}></div>
+                <span>{combinedData.difficulty || 'Medium'} Level</span>
+              </div>
+
+              {/* Time Estimate */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-800/40 border border-slate-600/30 rounded-xl backdrop-blur-sm text-slate-300 font-semibold text-sm">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12,6 12,12 16,14"></polyline>
+                </svg>
+                <span>{getTimeEstimate(combinedData.difficulty)} mins</span>
+              </div>
+
+              {/* Pattern Badge */}
+              {combinedData.pattern && (
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-xl backdrop-blur-sm text-purple-300 font-semibold text-sm">
+                  <Brain size={14} />
+                  <span>{combinedData.pattern}</span>
+                </div>
+              )}
+            </div>
+
           </div>
         </div>
       </div>
@@ -307,10 +563,11 @@ const ProblemPage = ({
                   {combinedData.concepts.map((concept, idx) => (
                     <button
                       key={idx}
-                      onClick={() => setSelectedConcept(concept)}
-                      className="group px-4 sm:px-6 py-2 sm:py-3 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/15 hover:border-purple-500/25 rounded-2xl text-purple-300 hover:text-purple-200 font-semibold transition-all duration-300 hover:scale-105 text-sm sm:text-base"
+                      onClick={() => handleConceptClick(concept)}
+                      className="group px-4 sm:px-6 py-2 sm:py-3 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/15 hover:border-purple-500/25 rounded-2xl text-purple-300 hover:text-purple-200 font-semibold transition-all duration-300 hover:scale-105 text-sm sm:text-base flex items-center gap-2"
                     >
-                      {concept}
+                      <span>{concept}</span>
+                      <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </button>
                   ))}
                 </div>
@@ -339,7 +596,7 @@ const ProblemPage = ({
             </div>
           </div>
 
-          {/* Right Column - Practice Tips */}
+          {/* Right Column - Practice Tips (Updated Design) */}
           <div className="space-y-6 sm:space-y-8">
             <div className="bg-gradient-to-br from-emerald-500/8 via-emerald-500/4 to-transparent backdrop-blur-sm border border-emerald-500/15 rounded-3xl p-6 sm:p-8 sticky top-32 relative overflow-hidden">
               <div className="absolute bottom-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl translate-y-16 translate-x-16"></div>
@@ -352,46 +609,70 @@ const ProblemPage = ({
                 </div>
                 
                 <div className="space-y-6">
+                  {/* Before Coding Section */}
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold text-emerald-300 mb-4 flex items-center gap-2">
                       <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
                       Before Coding
                     </h3>
-                    <ul className="space-y-3 text-gray-300">
-                      <li className="flex items-start gap-3 group">
-                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
-                        <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Understand the problem completely</span>
-                      </li>
-                      <li className="flex items-start gap-3 group">
-                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
-                        <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Identify edge cases</span>
-                      </li>
-                      <li className="flex items-start gap-3 group">
-                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
-                        <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Plan your approach</span>
-                      </li>
-                    </ul>
+                    <div className="bg-emerald-500/5 border border-emerald-500/10 rounded-2xl p-4">
+                      <ul className="space-y-3 text-gray-300">
+                        <li className="flex items-start gap-3 group">
+                          <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
+                          <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Understand the problem completely</span>
+                        </li>
+                        <li className="flex items-start gap-3 group">
+                          <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
+                          <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Identify edge cases</span>
+                        </li>
+                        <li className="flex items-start gap-3 group">
+                          <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
+                          <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Plan your approach</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* LeetCode Button - Centered */}
+                  <div className="flex justify-center py-2">
+                    <button
+                      onClick={handleLeetCodeSearch}
+                      className="group flex items-center gap-3 px-6 py-3.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-xl transition-all duration-300 font-semibold shadow-lg hover:shadow-orange-500/25 transform hover:scale-105 active:scale-95 border border-orange-400/20"
+                    >
+                      <div className="w-6 h-6 bg-white/25 rounded-lg flex items-center justify-center group-hover:bg-white/35 transition-colors duration-300">
+                        <span className="text-sm font-bold">LC</span>
+                      </div>
+                      <span>Solve on LeetCode</span>
+                      <ExternalLink size={16} className="opacity-75 group-hover:opacity-100 group-hover:rotate-12 transition-all duration-300" />
+                    </button>
                   </div>
                   
+                  {/* After Solving Section */}
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold text-emerald-300 mb-4 flex items-center gap-2">
                       <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
                       After Solving
                     </h3>
-                    <ul className="space-y-3 text-gray-300">
-                      <li className="flex items-start gap-3 group">
-                        <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
-                        <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Test with examples</span>
-                      </li>
-                      <li className="flex items-start gap-3 group">
-                        <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
-                        <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Analyze complexity</span>
-                      </li>
-                      <li className="flex items-start gap-3 group">
-                        <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
-                        <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Consider alternatives</span>
-                      </li>
-                    </ul>
+                    <div className="bg-emerald-500/5 border border-emerald-500/10 rounded-2xl p-4">
+                      <ul className="space-y-3 text-gray-300">
+                        <li className="flex items-start gap-3 group">
+                          <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
+                          <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Test with examples</span>
+                        </li>
+                        <li className="flex items-start gap-3 group">
+                          <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
+                          <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Analyze complexity</span>
+                        </li>
+                        <li className="flex items-start gap-3 group">
+                          <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
+                          <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Consider alternatives</span>
+                        </li>
+                        <li className="flex items-start gap-3 group">
+                          <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
+                          <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Review and optimize</span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -400,7 +681,7 @@ const ProblemPage = ({
         </div>
 
         {/* Solution Approach - Full Width */}
-        <div className="mb-8">
+        <div className="solution-approach-card">
           <div className="bg-gradient-to-br from-emerald-500/8 via-emerald-500/4 to-transparent backdrop-blur-sm border border-emerald-500/15 rounded-3xl p-6 sm:p-8 relative overflow-hidden">
             <div className="absolute top-1/2 left-0 w-72 h-72 bg-emerald-500/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-36"></div>
             <div className="relative z-10">
@@ -472,15 +753,7 @@ const ProblemPage = ({
           </div>
         </div>
       </div>
-
-      {/* Concept Modal */}
-      {selectedConcept && conceptsInfo && (
-        <ConceptModal
-          concept={selectedConcept}
-          description={conceptsInfo[selectedConcept]?.description}
-          onClose={() => setSelectedConcept(null)}
-        />
-      )}
+      <Footer />
     </DSALayout>
   );
 };

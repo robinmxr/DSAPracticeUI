@@ -205,7 +205,7 @@ const DailyStudyTips = () => (
               </p>
               <div className="flex items-center gap-3 text-sm text-gray-400">
                 <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                <span>One click → LeetCode problem page (In Progress)</span>
+                <span>One click → LeetCode problem page</span>
               </div>
             </div>
           </div>

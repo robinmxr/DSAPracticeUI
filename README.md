@@ -166,6 +166,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 **Ready to begin your algorithmic adventure?** 🚀
 
-[Start Your Quest](https://Algomist.dev) | [Join Our Community](https://discord.gg/Algomist) | [Follow Updates](https://twitter.com/Algomist)
+[Start Your Quest](https://Algomist.netlify.app) | [Join Our Community](https://discord.gg/Algomist) | [Follow Updates](https://twitter.com/Algomist)
 
 *Remember: Every algorithm master was once a beginner. Your quest starts with a single step!*

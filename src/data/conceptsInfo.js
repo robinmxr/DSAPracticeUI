@@ -1,4 +1,3 @@
-
 export const conceptsInfo = {
   "Two pointers technique": {
     description: "A technique where two pointers iterate through the data structure at different speeds or directions to solve problems efficiently. Common patterns include: opposite ends moving inward (for sorted arrays), fast/slow pointers (cycle detection), and sliding window variations. This approach often reduces time complexity from O(n²) to O(n) by avoiding nested loops. Used extensively in array problems, linked list cycle detection, and palindrome verification."
@@ -212,5 +211,46 @@ export const conceptsInfo = {
   },
   "Game theory": {
     description: "Dynamic programming problems involving optimal strategies in competitive games, typically with two players alternating moves and trying to maximize their own outcomes. These problems often involve minimax strategies where one player tries to maximize a score while the opponent tries to minimize it. The DP state usually includes the current game position and whose turn it is. Game theory DP teaches concepts about adversarial optimization and is applicable to AI game playing, economic modeling, and strategic decision making."
+  },
+
+  // Missing concepts that might be referenced in your learning plan:
+  "Array": {
+    description: "A linear data structure that stores elements of the same type in contiguous memory locations, accessible via indices. Arrays provide O(1) random access to elements but have fixed size in most languages. They support efficient iteration and are cache-friendly due to memory locality. Arrays are fundamental for implementing other data structures and algorithms. Operations include accessing, updating, inserting (potentially expensive), and deleting elements. Understanding array memory layout, index calculations, and common operations is crucial for algorithmic problem solving."
+  },
+
+  "Binary Tree": {
+    description: "A hierarchical data structure where each node has at most two children, referred to as left and right child. Binary trees are fundamental for organizing hierarchical data and are the basis for many advanced tree structures. Properties include height, depth, and various traversal methods. Binary trees can be complete, perfect, balanced, or degenerate. They're used in expression parsing, decision trees, and as building blocks for more complex structures like heaps and binary search trees."
+  },
+
+  "Tree": {
+    description: "A hierarchical data structure consisting of nodes connected by edges, with one node designated as the root and no cycles. Trees represent hierarchical relationships naturally and are fundamental in computer science. Key concepts include parent-child relationships, leaves, height, depth, and subtrees. Trees support various traversal methods and are used in file systems, organizational structures, decision making, and many algorithms. Understanding tree terminology and basic operations is essential for advanced data structures."
+  },
+
+  "Matrix": {
+    description: "A 2D array structure representing a rectangular grid of elements organized in rows and columns. Matrices are fundamental in mathematics, graphics, and scientific computing. Common operations include element access, row/column operations, transposition, and various traversal patterns. In algorithm problems, matrices often represent grids, adjacency matrices for graphs, or dynamic programming tables. Understanding matrix indexing, boundary conditions, and efficient traversal patterns is crucial for grid-based problems."
+  },
+
+  "Grid": {
+    description: "A 2D structure similar to a matrix, often used to represent spatial relationships, game boards, or coordinate systems. Grids are common in pathfinding problems, cellular automata, and spatial algorithms. Key concepts include coordinate systems, neighbor relationships (4-directional vs 8-directional), boundary handling, and traversal patterns. Grid problems often involve BFS/DFS for pathfinding, dynamic programming for optimization, and various search algorithms for pattern finding."
+  },
+
+  "Bit Manipulation": {
+    description: "Techniques for manipulating individual bits within binary representations of numbers. Common operations include AND, OR, XOR, NOT, left shift, and right shift. Bit manipulation enables efficient solutions for problems involving subsets, flags, and optimization. Advanced techniques include bit masking, finding single numbers, counting set bits, and power-of-two operations. Understanding binary representation and bitwise operations is crucial for systems programming and competitive programming."
+  },
+
+  "Binary Search Tree": {
+    description: "A binary tree data structure where nodes are organized such that all values in the left subtree are less than the node's value, and all values in the right subtree are greater. BSTs support efficient searching, insertion, and deletion operations in O(log n) average time. The inorder traversal of a BST yields elements in sorted order. BSTs can become unbalanced, leading to O(n) worst-case performance, which is addressed by self-balancing variants like AVL trees and Red-Black trees."
+  },
+
+  "Sorting": {
+    description: "Algorithms that arrange elements in a specific order (typically ascending or descending). Fundamental sorting algorithms include bubble sort, selection sort, insertion sort (O(n²)), and more efficient algorithms like merge sort, quicksort, and heapsort (O(n log n)). Each algorithm has different characteristics regarding stability, in-place operation, and performance on different input types. Understanding sorting is crucial as it's often a preprocessing step for other algorithms and optimization problems."
+  },
+
+  "Searching": {
+    description: "Algorithms designed to find specific elements or determine their presence in data structures. Linear search checks elements sequentially (O(n)), while binary search works on sorted data (O(log n)). Advanced searching includes interpolation search, exponential search, and hash-based searching. Searching algorithms are fundamental building blocks for more complex algorithms and are crucial for database operations, information retrieval, and optimization problems."
+  },
+
+  "Graph Algorithms": {
+    description: "Specialized algorithms designed to solve problems on graph data structures. This includes traversal algorithms (DFS, BFS), shortest path algorithms (Dijkstra, Bellman-Ford), minimum spanning tree algorithms (Kruskal, Prim), and connectivity algorithms. Graph algorithms are essential for network analysis, social networks, transportation systems, and many optimization problems. Understanding graph representation and fundamental algorithms is crucial for solving complex relationship-based problems."
   }
 };
