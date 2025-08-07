@@ -460,30 +460,30 @@ const ProblemPage = ({
         </div>
       </div>
       {/* Hero Header with Floating Elements */}
-      <div className="relative mb-12 overflow-hidden">
+      <div className="relative mb-6 overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-10 left-1/4 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl"></div>
-          <div className="absolute top-20 right-1/3 w-24 h-24 bg-purple-500/5 rounded-full blur-2xl"></div>
-          <div className="absolute bottom-10 left-1/2 w-40 h-40 bg-emerald-500/5 rounded-full blur-3xl"></div>
+          <div className="absolute top-10 left-1/4 w-20 h-20 bg-blue-500/5 rounded-full blur-2xl"></div>
+          <div className="absolute top-20 right-1/3 w-16 h-16 bg-purple-500/5 rounded-full blur-xl"></div>
+          <div className="absolute bottom-10 left-1/2 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl"></div>
         </div>
 
         <div className="relative z-10">
           {/* Title Section */}
-          <div className="text-center py-12 px-4 max-w-7xl mx-auto">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-full px-6 py-2 mb-6">
-              <Code size={16} className="text-blue-400" />
-              <span className="text-sm font-medium text-blue-300">AlgoMist Challenge</span>
+          <div className="text-center py-6 px-2 max-w-7xl mx-auto">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-full px-4 py-1 mb-4">
+              <Code size={14} className="text-blue-400" />
+              <span className="text-xs font-medium text-blue-300">AlgoMist Challenge</span>
             </div>
             
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent break-words">
+            <h1 className="text-2xl md:text-4xl font-bold text-white mb-4 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent break-words">
               {decodedProblemName}
             </h1>
 
             {/* Difficulty and Time Estimate */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-8">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-4">
               {/* Difficulty Badge */}
-              <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl border backdrop-blur-sm font-semibold text-sm ${getDifficultyColor(combinedData.difficulty)}`}>
+              <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-xl border backdrop-blur-sm font-semibold text-xs ${getDifficultyColor(combinedData.difficulty)}`}>
                 <div className={`w-2 h-2 rounded-full ${
                   combinedData.difficulty?.toLowerCase() === 'easy' ? 'bg-green-400' :
                   combinedData.difficulty?.toLowerCase() === 'medium' ? 'bg-yellow-400' :
@@ -493,7 +493,7 @@ const ProblemPage = ({
               </div>
 
               {/* Time Estimate */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-800/40 border border-slate-600/30 rounded-xl backdrop-blur-sm text-slate-300 font-semibold text-sm">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-800/40 border border-slate-600/30 rounded-xl backdrop-blur-sm text-slate-300 font-semibold text-xs">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <circle cx="12" cy="12" r="10"></circle>
                   <polyline points="12,6 12,12 16,14"></polyline>
@@ -503,8 +503,8 @@ const ProblemPage = ({
 
               {/* Pattern Badge */}
               {combinedData.pattern && (
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-xl backdrop-blur-sm text-purple-300 font-semibold text-sm">
-                  <Brain size={14} />
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-purple-500/10 border border-purple-500/20 rounded-xl backdrop-blur-sm text-purple-300 font-semibold text-xs">
+                  <Brain size={12} />
                   <span>{combinedData.pattern}</span>
                 </div>
               )}

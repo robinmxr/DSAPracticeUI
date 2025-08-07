@@ -2,10 +2,10 @@ import React from 'react';
 import { User, Mail, Globe, Sparkles, Linkedin, Github, Trophy } from 'lucide-react';
 
 const Footer = ({ totalTopics = 36, totalProblems = 90, isSidebarMinimized = false }) => (
-  <footer className={`relative overflow-hidden border-t border-slate-200/50 dark:border-slate-700/50 bg-gradient-to-br from-white/80 via-slate-50/80 to-blue-50/80 dark:from-slate-900/80 dark:via-slate-800/80 dark:to-slate-900/80 backdrop-blur-sm ${isSidebarMinimized !== undefined ? (isSidebarMinimized ? 'lg:pl-20' : 'lg:pl-80') : ''}`}>
+  <footer className={`relative overflow-hidden border-t border-slate-200/50 dark:border-slate-700/50 bg-gradient-to-br from-white/80 via-slate-50/80 to-blue-50/80 dark:from-slate-900/80 dark:via-slate-800/80 dark:to-slate-900/80 backdrop-blur-sm ${isSidebarMinimized ? (isSidebarMinimized ? 'lg:pl-20' : 'lg:pl-80') : ''}`}> 
     {/* Background decoration */}
     <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-emerald-500/5 dark:from-blue-500/10 dark:via-purple-500/10 dark:to-emerald-500/10"></div>
-    <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+    <div className="relative z-10 max-w-6xl mx-auto px-2 sm:px-4 lg:px-8 py-8 sm:py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-12">
           {/* Creator Section - Mobile optimized */}
           <div className="flex flex-col items-start space-y-3 sm:space-y-4">

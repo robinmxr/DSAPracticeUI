@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Clock, CheckCircle, Sparkles, Code, Target, Zap, Brain, Trophy, Rocket } from 'lucide-react';
+import { ChevronDown, CheckCircle, Code, Target, Zap, Brain, Trophy, Rocket } from 'lucide-react';
 import { learningPlan } from "../data/learningPlan";
 
 const WeekNavigation = ({ 
@@ -70,7 +70,7 @@ const WeekNavigation = ({
   };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2 mt-4">
       {weeks.map((weekNumber) => {
         const week = learningPlan[weekNumber];
         const isActive = activeWeek === weekNumber;
@@ -79,64 +79,62 @@ const WeekNavigation = ({
         
         return (
           <div key={weekNumber}>
-            {/* Week Button - Glassmorphism Style */}
+            {/* Week Button - Simplified */}
             <button
               onClick={() => handleWeekClick(weekNumber)}
-              className={`group w-full flex items-center gap-3 p-4 rounded-2xl text-left transition-all duration-300 backdrop-blur-sm border hover:scale-105 active:scale-95 ${
+              className={`group w-full flex items-center ${isMinimized ? 'justify-center p-2' : 'gap-2.5 p-3'} rounded-lg text-left transition-all duration-200 ${
                 isActive 
-                  ? 'bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border-blue-500/20 text-blue-700 dark:text-blue-300 shadow-lg shadow-blue-500/10' 
-                  : 'bg-white/60 dark:bg-slate-800/60 border-slate-200/50 dark:border-slate-700/50 text-slate-700 dark:text-slate-400 hover:bg-white/80 dark:hover:bg-slate-800/80 hover:border-slate-300/60 dark:hover:border-slate-600/60 hover:text-slate-900 dark:hover:text-white hover:shadow-lg'
+                  ? 'bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-300 border border-blue-200/50 dark:border-blue-800/50' 
+                  : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/30 hover:text-slate-700 dark:hover:text-slate-300'
               }`}
               title={isMinimized ? `Quest ${weekNumber} - ${week.title}` : undefined}
             >
-              {/* Week Icon - Gradient Background */}
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg ${
+              {/* Week Icon - Simplified */}
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200 flex-shrink-0 ${
                 isActive 
-                  ? 'bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-blue-500/25' 
-                  : 'bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-700 dark:to-slate-600 text-slate-600 dark:text-slate-400 group-hover:from-slate-200 group-hover:to-slate-300 dark:group-hover:from-slate-600 dark:group-hover:to-slate-500 shadow-slate-500/10'
+                  ? 'bg-blue-500 text-white' 
+                  : 'bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 group-hover:bg-slate-200 dark:group-hover:bg-slate-600'
               }`}>
-                <WeekIcon size={16} className="transition-transform duration-300 group-hover:rotate-12" />
+                <WeekIcon size={14} />
               </div>
               
-              {!isMinimized && (
-                <>
-                  {/* Week Content - Enhanced Typography */}
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="font-bold text-base">Quest {weekNumber}</span>
-                      {isActive && <Sparkles size={14} className="text-blue-500 animate-pulse" />}
-                    </div>
-                    <p className="text-sm opacity-70 truncate transition-opacity duration-300 group-hover:opacity-90">{week.title}</p>
-                  </div>
-                  
-                  {/* Enhanced Chevron with Background */}
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${
-                    isActive 
-                      ? 'bg-blue-100 dark:bg-blue-900/30' 
-                      : 'bg-slate-100 dark:bg-slate-700/50 group-hover:bg-slate-200 dark:group-hover:bg-slate-600/70'
-                  }`}>
-                    <ChevronDown 
-                      size={16} 
-                      className={`transition-all duration-300 ${
-                        isExpanded ? 'rotate-180 scale-110' : 'group-hover:scale-110'
-                      } ${
-                        isActive ? 'text-blue-600' : 'text-slate-500 group-hover:text-slate-700 dark:group-hover:text-slate-300'
-                      }`}
-                    />
-                  </div>
-                </>
-              )}
+              {/* Week Content - Simplified */}
+              <div className={`flex-1 min-w-0 transition-all duration-500 ease-in-out overflow-hidden ${
+                !isMinimized 
+                  ? 'opacity-100 max-w-full translate-x-0' 
+                  : 'opacity-0 max-w-0 -translate-x-4'
+              }`}>
+                <div className="flex items-center gap-1.5 whitespace-nowrap">
+                  <span className="font-medium text-sm">Quest {weekNumber}</span>
+                  {isActive && <div className="w-1.5 h-1.5 bg-blue-500 rounded-full"></div>}
+                </div>
+                <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{week.title}</p>
+              </div>
+              
+              {/* Simple Chevron */}
+              <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                !isMinimized 
+                  ? 'opacity-100 max-w-full' 
+                  : 'opacity-0 max-w-0'
+              }`}>
+                <ChevronDown 
+                  size={14} 
+                  className={`transition-transform duration-200 text-slate-400 ${
+                    isExpanded ? 'rotate-180' : ''
+                  }`}
+                />
+              </div>
             </button>
 
-            {/* Topics - Enhanced Dropdown */}
+            {/* Topics - Simplified */}
             {!isMinimized && (
-              <div className={`overflow-hidden transition-all duration-500 ease-out ${
+              <div className={`overflow-hidden transition-all duration-300 ${
                 isExpanded && week.topics 
-                  ? 'max-h-[800px] opacity-100 mt-2' 
+                  ? 'max-h-[600px] opacity-100 mt-1' 
                   : 'max-h-0 opacity-0'
               }`}>
-                <div className="ml-6 pl-4 border-l-2 border-gradient-to-b from-slate-200/50 to-transparent dark:from-slate-700/50 space-y-2">
-                  {week.topics?.map((topic, index) => {
+                <div className="ml-4 space-y-1">
+                  {week.topics?.map((topic) => {
                     const isSelected = selectedTopicId === topic.id;
                     const isCompleted = completedTopics.has(topic.id);
                     
@@ -144,48 +142,32 @@ const WeekNavigation = ({
                       <button
                         key={topic.id}
                         onClick={(e) => handleTopicClick(e, topic.id, weekNumber)}
-                        className={`group w-full flex items-center gap-3 p-3 rounded-xl text-left transition-all duration-300 backdrop-blur-sm border hover:scale-102 active:scale-98 ${
+                        className={`group w-full flex items-center gap-2 p-2.5 rounded-md text-left transition-all duration-200 ${
                           isSelected
-                            ? 'bg-gradient-to-r from-emerald-500/10 to-green-500/10 border-emerald-500/20 text-emerald-700 dark:text-emerald-300 shadow-md shadow-emerald-500/10'
-                            : 'bg-white/40 dark:bg-slate-800/40 border-slate-200/30 dark:border-slate-700/30 text-slate-600 dark:text-slate-400 hover:bg-white/60 dark:hover:bg-slate-800/60 hover:border-slate-300/50 dark:hover:border-slate-600/50 hover:text-slate-800 dark:hover:text-slate-200'
+                            ? 'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-800/50'
+                            : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/30 hover:text-slate-700 dark:hover:text-slate-300'
                         }`}
-                        style={{
-                          transitionDelay: isExpanded ? `${index * 50}ms` : '0ms'
-                        }}
                       >
-                        {/* Enhanced Status Indicator */}
-                        <div className={`w-4 h-4 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm ${
+                        {/* Simple Status Indicator */}
+                        <div className={`w-3 h-3 rounded-full transition-all duration-200 ${
                           isSelected 
-                            ? 'bg-gradient-to-br from-emerald-500 to-green-600 shadow-emerald-500/25 scale-110' 
+                            ? 'bg-emerald-500' 
                             : isCompleted
-                            ? 'bg-gradient-to-br from-green-500 to-emerald-600 shadow-green-500/20'
-                            : 'bg-gradient-to-br from-slate-300 to-slate-400 dark:from-slate-600 dark:to-slate-500 group-hover:from-slate-400 group-hover:to-slate-500 dark:group-hover:from-slate-500 dark:group-hover:to-slate-400 shadow-slate-500/15'
+                            ? 'bg-green-500'
+                            : 'bg-slate-300 dark:bg-slate-600 group-hover:bg-slate-400 dark:group-hover:bg-slate-500'
                         }`}>
                           {isCompleted && (
-                            <CheckCircle size={10} className="text-white" />
+                            <CheckCircle size={12} className="text-white -m-px" />
                           )}
                         </div>
                         
-                        {/* Topic Content - Enhanced */}
+                        {/* Topic Content - Simplified */}
                         <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="font-semibold text-sm truncate">{topic.title}</span>
-                            {isCompleted && (
-                              <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse flex-shrink-0"></div>
-                            )}
-                          </div>
-                          <div className="flex items-center gap-2 text-xs opacity-60 transition-opacity duration-300 group-hover:opacity-80">
-                            <Clock size={10} className="flex-shrink-0" />
-                            <span>{topic.timeLearn}</span>
+                          <div className="flex items-center justify-between">
+                            <span className="font-medium text-sm truncate">{topic.title}</span>
+                            <span className="text-xs text-slate-400 ml-2 flex-shrink-0">{topic.timeLearn}</span>
                           </div>
                         </div>
-
-                        {/* Subtle Hover Indicator */}
-                        <div className={`w-1 h-6 rounded-full transition-all duration-300 ${
-                          isSelected
-                            ? 'bg-emerald-500'
-                            : 'bg-slate-300 dark:bg-slate-600 opacity-0 group-hover:opacity-100 group-hover:bg-slate-500'
-                        }`}></div>
                       </button>
                     );
                   })}

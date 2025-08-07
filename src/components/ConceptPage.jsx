@@ -56,34 +56,34 @@ const ConceptPage = (props) => {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
           {/* Hero Section */}
-          <div className="relative mb-12 overflow-hidden">
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute top-10 left-1/4 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl"></div>
-              <div className="absolute top-20 right-1/3 w-24 h-24 bg-purple-500/5 rounded-full blur-2xl"></div>
-              <div className="absolute bottom-10 left-1/2 w-40 h-40 bg-emerald-500/5 rounded-full blur-3xl"></div>
-            </div>
-
-            <div className="relative z-10">
-              <div className="text-center py-12 px-4">
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-full px-6 py-2 mb-6">
-                  <Code size={16} className="text-blue-400" />
-                  <span className="text-sm font-medium text-blue-300">Concept Deep Dive</span>
-                </div>
-                <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent break-words">
-                  {decodedConceptName}
-                </h1>
-                <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-                  Master this fundamental concept with detailed explanations, examples, and AI-powered insights
-                </p>
-              </div>
-            </div>
+        <div className="relative mb-6 overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-10 left-1/4 w-20 h-20 bg-blue-500/5 rounded-full blur-2xl"></div>
+            <div className="absolute top-20 right-1/3 w-16 h-16 bg-purple-500/5 rounded-full blur-xl"></div>
+            <div className="absolute bottom-10 left-1/2 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl"></div>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8 pb-8">
+          <div className="relative z-10">
+            <div className="text-center py-6 px-2 sm:py-8 sm:px-4">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 rounded-full px-4 py-1 mb-4">
+                <Code size={14} className="text-blue-400" />
+                <span className="text-xs font-medium text-blue-300">Concept Deep Dive</span>
+              </div>
+              <h1 className="text-2xl md:text-4xl font-bold text-white mb-4 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent break-words">
+                {decodedConceptName}
+              </h1>
+              <p className="text-base text-gray-400 max-w-xl mx-auto leading-relaxed">
+                Master this concept with explanations, examples, and AI insights
+              </p>
+            </div>
+          </div>
+        </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 pb-8">
             {/* Main Content */}
-            <div className="lg:col-span-2 space-y-8">
+            <div className="lg:col-span-2 space-y-6 sm:space-y-8">
               {/* Description */}
               <div className="bg-gradient-to-br from-blue-500/8 via-blue-500/4 to-transparent backdrop-blur-sm border border-blue-500/15 rounded-3xl p-6 sm:p-8 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -translate-y-32 translate-x-32"></div>
@@ -123,14 +123,14 @@ const ConceptPage = (props) => {
                     <button
                       onClick={handleAIExplanation}
                       disabled={isLoadingAI}
-                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl transition-all duration-300 font-medium shadow-sm hover:shadow-md transform hover:scale-105 group"
+                      className="flex flex-wrap sm:flex-nowrap items-center gap-2 px-3 py-2 sm:px-4 sm:py-2 bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl transition-all duration-300 font-medium shadow-sm hover:shadow-md transform hover:scale-105 group text-xs sm:text-sm"
                     >
                       {isLoadingAI ? (
                         <Loader2 size={18} className="animate-spin" />
                       ) : (
                         <Brain size={18} className="group-hover:scale-110 transition-transform duration-300" />
                       )}
-                      <span>{aiExplanation ? (showAISection ? 'Hide' : 'Show') : 'Generate'}</span>
+                      <span className="whitespace-nowrap">{aiExplanation ? (showAISection ? 'Hide' : 'Show') : 'Generate'}</span>
                       <Sparkles size={14} className="opacity-70" />
                     </button>
                   </div>
@@ -160,7 +160,7 @@ const ConceptPage = (props) => {
             </div>
 
             {/* Sidebar */}
-            <div className="space-y-6 sm:space-y-8">
+            <div className="space-y-4 sm:space-y-6 lg:space-y-8">
               {/* Quick Actions */}
               <div className="bg-gradient-to-br from-emerald-500/8 via-emerald-500/4 to-transparent backdrop-blur-sm border border-emerald-500/15 rounded-3xl p-6 sticky top-32 overflow-hidden mb-0">
                 <div className="absolute bottom-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl translate-y-16 translate-x-16"></div>

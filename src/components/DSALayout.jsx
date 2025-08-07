@@ -69,64 +69,56 @@ const DSALayout = ({
 
       {/* Sidebar */}
       {!shouldHideSidebar && (
-        <div className={`fixed inset-y-0 left-0 z-50 ${sidebarWidth} bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transform transition-all duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
+        <div className={`fixed inset-y-0 left-0 z-50 ${sidebarWidth} bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border-r border-slate-200/50 dark:border-slate-800/50 transform transition-all duration-500 ease-in-out ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
           <div className="flex flex-col h-full">
             {/* Close button for mobile */}
             <button
               onClick={() => setSidebarOpen(false)}
-              className="absolute top-4 right-4 z-10 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 lg:hidden rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
+              className="absolute top-4 right-4 z-10 p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 lg:hidden rounded-md hover:bg-slate-100/50 dark:hover:bg-slate-800/50"
             >
-              <X size={20} />
+              <X size={18} />
             </button>
 
             {/* Header */}
-            <div className={`p-6 border-b border-slate-200 dark:border-slate-800 ${isSidebarMinimized ? 'px-4' : 'px-6'}`}>
-              <div className={`flex items-center ${isSidebarMinimized ? 'justify-center' : 'gap-3'}`}>
+            <div className={`p-4 border-b border-slate-200/30 dark:border-slate-800/30 transition-all duration-500 ease-in-out ${isSidebarMinimized ? 'px-3' : 'px-4'}`}>
+              <div className={`flex items-center transition-all duration-500 ease-in-out ${isSidebarMinimized ? 'justify-center' : 'gap-2.5'}`}>
                 <button
                   onClick={() => navigate('/')}
-                  className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0 hover:scale-110 transition-all duration-300"
+                  className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0 hover:scale-105 transition-all duration-200"
                 >
-                  <Code size={24} className="text-white" />
+                  <Code size={20} className="text-white" />
                 </button>
-                {!isSidebarMinimized && (
-                  <div>
-                    <button
-                      onClick={() => navigate('/')}
-                      className="text-left hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                    >
-                      <h1 className="text-xl font-bold text-slate-900 dark:text-white">Algomist</h1>
-                      <p className="text-sm text-slate-500 dark:text-slate-400">Master the Code</p>
-                    </button>
-                  </div>
-                )}
+                <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
+                  !isSidebarMinimized 
+                    ? 'opacity-100 max-w-full translate-x-0' 
+                    : 'opacity-0 max-w-0 -translate-x-4'
+                }`}>
+                  <button
+                    onClick={() => navigate('/')}
+                    className="text-left hover:text-blue-600 dark:hover:text-blue-400 transition-colors whitespace-nowrap"
+                  >
+                    <h1 className="text-lg font-semibold text-slate-900 dark:text-white">Algomist</h1>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Master the Code</p>
+                  </button>
+                </div>
               </div>
             </div>
 
             {/* Collapse Toggle */}
             {toggleSidebarMinimized && (
-              <div className="hidden lg:flex justify-end px-4 py-2 border-b border-slate-200 dark:border-slate-700">
+              <div className="hidden lg:flex justify-center px-3 py-1.5">
                 <button
                   onClick={toggleSidebarMinimized}
-                  className="p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-300 transition-all duration-300"
+                  className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-600 dark:hover:text-slate-300 transition-all duration-200"
                   title={isSidebarMinimized ? "Expand Sidebar" : "Minimize Sidebar"}
                 >
-                  {isSidebarMinimized ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+                  {isSidebarMinimized ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
                 </button>
               </div>
             )}
 
-            {/* Quest Path Label */}
-            {!isSidebarMinimized && (
-              <div className="p-6 pb-4">
-                <div className="flex items-center gap-2">
-                  <Calendar size={18} className="text-slate-400" />
-                  <span className="text-base font-semibold text-slate-700 dark:text-slate-300">Quest Path</span>
-                </div>
-              </div>
-            )}
-
             {/* Navigation */}
-            <div className={`flex-1 overflow-y-auto ${isSidebarMinimized ? 'px-2' : 'px-6'} pb-6`}>
+            <div className={`flex-1 overflow-y-auto transition-all duration-500 ease-in-out ${isSidebarMinimized ? 'px-1.5' : 'px-4'} pb-4`}>
               <WeekNavigation 
                 activeWeek={activeWeek} 
                 setActiveWeek={handleWeekNavigation}
@@ -176,7 +168,7 @@ const DSALayout = ({
       </div>
 
       {/* Main Content */}
-      <div className={`${mainContentClass} transition-all duration-300`}>
+      <div className={`${mainContentClass} transition-all duration-500 ease-in-out`}>
         <main className="min-h-screen pt-16 lg:pt-0">
           <div className={`${shouldHideSidebar ? 'p-0' : 'p-6'}`}>
             {children}
