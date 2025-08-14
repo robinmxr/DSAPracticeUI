@@ -138,13 +138,13 @@ const DSAMasteryPlan = ({
           </div>
         )}
 
-        <div className="max-w-6xl mx-auto space-y-6 lg:space-y-12">
+        <div className="w-full max-w-none mx-auto px-2 sm:px-4 lg:px-6 space-y-4 sm:space-y-6 lg:space-y-12">
           {/* Mobile-Optimized Hero Section */}
-          <div className="text-center py-6 lg:py-12 relative">
-            <div className="relative z-10 max-w-4xl mx-auto px-4">
+          <div className="text-center py-4 sm:py-6 lg:py-12 relative px-4 sm:px-0">
+            <div className="relative z-10 w-full mx-auto">
               {/* Mobile-only compact badge */}
-              <div className="sm:hidden inline-flex items-center gap-2 px-3 py-1.5 bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50 text-slate-600 dark:text-slate-400 rounded-full text-xs font-medium mb-4">
-                <Sparkles size={14} className="text-amber-500" />
+              <div className="sm:hidden inline-flex items-center gap-2 px-3 py-1.5 bg-white/70 dark:bg-slate-800/70 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50 text-slate-600 dark:text-slate-400 rounded-full text-xs font-medium mb-3">
+                <Sparkles size={12} className="text-amber-500" />
                 <span>Algomist</span>
               </div>
               
@@ -154,7 +154,7 @@ const DSAMasteryPlan = ({
                 <span>Algomist Journey</span>
               </div>
               
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-3 lg:mb-6 leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold mb-3 sm:mb-4 lg:mb-6 leading-tight">
                 <span className="text-slate-900 dark:text-white">
                   The{' '}
                 </span>
@@ -170,23 +170,23 @@ const DSAMasteryPlan = ({
                 </span>
               </h1>
               
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed mb-4 lg:mb-8">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-600 dark:text-slate-400 w-full mx-auto leading-relaxed mb-4 sm:mb-6 lg:mb-8 px-2 sm:px-0">
                 6-week algorithmic adventure designed to conquer technical interviews with 
                 <span className="text-slate-800 dark:text-slate-300 font-semibold"> strategic mastery</span>
               </p>
 
               {/* Mobile-optimized stats - simplified */}
-              <div className="flex items-center justify-center gap-4 sm:gap-8 text-xs sm:text-sm">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full"></div>
+              <div className="flex items-center justify-center gap-4 sm:gap-6 md:gap-8 text-xs sm:text-sm">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-blue-500 rounded-full"></div>
                   <span className="text-slate-600 dark:text-slate-400">6 Quests</span>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-emerald-500 rounded-full"></div>
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-emerald-500 rounded-full"></div>
                   <span className="text-slate-600 dark:text-slate-400">{totalTopics} Topics</span>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full"></div>
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 bg-purple-500 rounded-full"></div>
                   <span className="text-slate-600 dark:text-slate-400">{totalProblems} Problems</span>
                 </div>
               </div>
@@ -194,35 +194,35 @@ const DSAMasteryPlan = ({
           </div>
 
           {/* Mobile-Optimized Stats Cards */}
-          <div ref={statsRef} className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6 mb-4 lg:mb-8 px-4 lg:px-0">
+          <div ref={statsRef} className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 lg:gap-6 mb-4 sm:mb-6 lg:mb-8">
             {/* Current Week Card */}
-            <div className="group relative overflow-hidden bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl lg:rounded-2xl p-3 lg:p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+            <div className="group relative overflow-hidden bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-2xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-indigo-600/5 dark:from-blue-500/10 dark:to-indigo-600/10"></div>
               <div className="relative z-10">
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-8 h-8 lg:w-12 lg:h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg lg:rounded-xl flex items-center justify-center shadow-lg mb-2">
-                    <TrendingUp className="text-white" size={14} />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center shadow-lg mb-3 sm:mb-4">
+                    <TrendingUp className="text-white" size={18} />
                   </div>
-                  <span className="text-lg lg:text-2xl font-bold text-slate-900 dark:text-white">
+                  <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white">
                     {activeWeek}
                   </span>
-                  <p className="text-xs lg:text-sm font-medium text-slate-600 dark:text-slate-400">Quest</p>
+                  <p className="text-xs sm:text-sm lg:text-base font-medium text-slate-600 dark:text-slate-400">Quest</p>
                 </div>
               </div>
             </div>
 
             {/* Topics Progress Card */}
-            <div className="group relative overflow-hidden bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl lg:rounded-2xl p-3 lg:p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+            <div className="group relative overflow-hidden bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-2xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-green-600/5 dark:from-emerald-500/10 dark:to-green-600/10"></div>
               <div className="relative z-10">
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-8 h-8 lg:w-12 lg:h-12 bg-gradient-to-br from-emerald-500 to-green-600 rounded-lg lg:rounded-xl flex items-center justify-center shadow-lg mb-2">
-                    <BookOpen className="text-white" size={14} />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-emerald-500 to-green-600 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center shadow-lg mb-3 sm:mb-4">
+                    <BookOpen className="text-white" size={18} />
                   </div>
-                  <span className="text-lg lg:text-2xl font-bold text-slate-900 dark:text-white">
+                  <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white">
                     {topicProgress}%
                   </span>
-                  <p className="text-xs lg:text-sm font-medium text-slate-600 dark:text-slate-400">
+                  <p className="text-xs sm:text-sm lg:text-base font-medium text-slate-600 dark:text-slate-400">
                     <span className="hidden sm:inline">{completedTopicsCount}/{totalTopics} </span>Topics
                   </p>
                 </div>
@@ -230,17 +230,17 @@ const DSAMasteryPlan = ({
             </div>
 
             {/* Problems Progress Card */}
-            <div className="group relative overflow-hidden bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl lg:rounded-2xl p-3 lg:p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+            <div className="group relative overflow-hidden bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-2xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-600/5 dark:from-purple-500/10 dark:to-pink-600/10"></div>
               <div className="relative z-10">
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-8 h-8 lg:w-12 lg:h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg lg:rounded-xl flex items-center justify-center shadow-lg mb-2">
-                    <Trophy className="text-white" size={14} />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center shadow-lg mb-3 sm:mb-4">
+                    <Trophy className="text-white" size={18} />
                   </div>
-                  <span className="text-lg lg:text-2xl font-bold text-slate-900 dark:text-white">
+                  <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white">
                     {problemProgress}%
                   </span>
-                  <p className="text-xs lg:text-sm font-medium text-slate-600 dark:text-slate-400">
+                  <p className="text-xs sm:text-sm lg:text-base font-medium text-slate-600 dark:text-slate-400">
                     <span className="hidden sm:inline">{completedProblemsCount}/{totalProblems} </span>Solved
                   </p>
                 </div>
@@ -248,17 +248,17 @@ const DSAMasteryPlan = ({
             </div>
 
             {/* Reset Button Card - Mobile optimized */}
-            <div className="group relative overflow-hidden bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl lg:rounded-2xl p-3 lg:p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
+            <div className="group relative overflow-hidden bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm rounded-2xl sm:rounded-2xl p-4 sm:p-5 lg:p-6 border border-slate-200/50 dark:border-slate-700/50 shadow-sm hover:shadow-lg transition-all duration-300 hover:scale-105">
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-orange-600/5 dark:from-red-500/10 dark:to-orange-600/10"></div>
               <div className="relative z-10 flex flex-col items-center justify-center h-full">
                 <button
                   onClick={() => setShowResetConfirm(true)}
                   disabled={completedProblemsCount === 0 && completedTopicsCount === 0}
-                  className="w-8 h-8 lg:w-12 lg:h-12 bg-gradient-to-br from-red-500 to-orange-600 hover:from-red-600 hover:to-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 rounded-lg lg:rounded-xl flex items-center justify-center mb-2 shadow-lg hover:shadow-xl transform hover:rotate-12 min-h-[44px] min-w-[44px]"
+                  className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-red-500 to-orange-600 hover:from-red-600 hover:to-orange-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center mb-3 sm:mb-4 shadow-lg hover:shadow-xl transform hover:rotate-12"
                 >
-                  <RotateCcw className="text-white" size={14} />
+                  <RotateCcw className="text-white" size={18} />
                 </button>
-                <p className="text-xs lg:text-sm font-medium text-slate-600 dark:text-slate-400 text-center">
+                <p className="text-xs sm:text-sm lg:text-base font-medium text-slate-600 dark:text-slate-400 text-center">
                   <span className="hidden sm:inline">Reset Progress</span>
                   <span className="sm:hidden">Reset</span>
                 </p>
@@ -267,7 +267,7 @@ const DSAMasteryPlan = ({
           </div>
 
           {/* Week Content - Adjusted margins for mobile */}
-          <div ref={weekContentRef} className={`relative transition-all duration-300 px-4 lg:px-0 ${isSticky && window.innerWidth >= 1024 ? 'lg:mt-20' : 'mt-0'}`}>
+          <div ref={weekContentRef} className={`relative transition-all duration-300 ${isSticky && window.innerWidth >= 1024 ? 'lg:mt-20' : 'mt-0'}`}>
             <WeekContent
               week={activeWeek}
               learningPlan={learningPlan}
@@ -279,7 +279,7 @@ const DSAMasteryPlan = ({
             />
           </div>
 
-          <div className="px-4 lg:px-0">
+          <div>
             <DailyStudyTips />
           </div>
         </div>

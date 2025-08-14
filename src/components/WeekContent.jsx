@@ -55,9 +55,9 @@ const WeekContent = ({
     : [];
 
   return (
-    <div className="space-y-4 sm:space-y-8">
+    <div className="space-y-4 sm:space-y-6 lg:space-y-8">
       {/* Mobile-Optimized Hero Header */}
-      <div className="relative mb-6 sm:mb-12 overflow-hidden">
+      <div className="relative mb-4 sm:mb-6 lg:mb-12 overflow-hidden">
         {/* Simplified background decoration for mobile */}
         <div className="absolute inset-0 pointer-events-none opacity-50 sm:opacity-100">
           <div className="absolute top-5 sm:top-10 left-1/4 w-16 sm:w-32 h-16 sm:h-32 bg-blue-500/5 rounded-full blur-2xl sm:blur-3xl"></div>
@@ -69,24 +69,24 @@ const WeekContent = ({
           <div className="bg-gradient-to-br from-blue-500/8 via-blue-500/4 to-transparent backdrop-blur-sm border border-blue-500/15 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 sm:w-64 h-32 sm:h-64 bg-blue-500/5 rounded-full blur-2xl sm:blur-3xl -translate-y-16 sm:-translate-y-32 translate-x-16 sm:translate-x-32"></div>
             <div className="relative z-10">
-              <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-lg">
-                  <Calendar className="text-white" size={16} />
+              <div className="flex items-center gap-2 sm:gap-3 lg:gap-4 mb-3 sm:mb-4 lg:mb-6">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center shadow-lg">
+                  <Calendar className="text-white" size={14} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent leading-tight">
+                  <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-white mb-1 bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent leading-tight">
                     Quest {week} - {weekData.title}
                   </h2>
-                  <p className="text-blue-300 font-medium text-sm sm:text-base">
+                  <p className="text-blue-300 font-medium text-xs sm:text-sm lg:text-base">
                     {weekData.description}
                   </p>
                 </div>
               </div>
 
               {selectedTopicId && topicsToShow.length > 0 && (
-                <div className="mt-4 sm:mt-6">
-                  <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-500/10 border border-blue-500/20 text-blue-300 rounded-full text-xs sm:text-sm font-medium backdrop-blur-sm">
-                    <BookOpen size={14} />
+                <div className="mt-3 sm:mt-4 lg:mt-6">
+                  <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 lg:px-4 py-1 sm:py-1.5 lg:py-2 bg-blue-500/10 border border-blue-500/20 text-blue-300 rounded-full text-xs sm:text-sm font-medium backdrop-blur-sm">
+                    <BookOpen size={12} />
                     <span className="truncate max-w-[200px] sm:max-w-none">{topicsToShow[0].title}</span>
                   </div>
                 </div>
@@ -98,16 +98,16 @@ const WeekContent = ({
 
       {/* Mobile-Optimized No Topic Selected Message */}
       {!selectedTopicId && (
-        <div className="bg-gradient-to-br from-purple-500/8 via-purple-500/4 to-transparent backdrop-blur-sm border border-purple-500/15 rounded-2xl sm:rounded-3xl p-6 sm:p-12 relative overflow-hidden">
+        <div className="bg-gradient-to-br from-purple-500/8 via-purple-500/4 to-transparent backdrop-blur-sm border border-purple-500/15 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-12 relative overflow-hidden">
           <div className="absolute bottom-0 left-0 w-24 sm:w-48 h-24 sm:h-48 bg-purple-500/5 rounded-full blur-2xl sm:blur-3xl translate-y-12 sm:translate-y-24 -translate-x-12 sm:-translate-x-24"></div>
           <div className="relative z-10 text-center">
-            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg">
-              <BookOpen className="text-white" size={20} />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg">
+              <BookOpen className="text-white" size={16} />
             </div>
-            <h3 className="text-lg sm:text-xl font-semibold text-white mb-2">
+            <h3 className="text-base sm:text-lg lg:text-xl font-semibold text-white mb-2">
               Select a Topic to Start
             </h3>
-            <p className="text-gray-400 max-w-md mx-auto text-sm sm:text-base">
+            <p className="text-gray-400 max-w-md mx-auto text-xs sm:text-sm lg:text-base">
               Choose a topic from the sidebar to view its problems and start practicing.
             </p>
           </div>
@@ -116,7 +116,7 @@ const WeekContent = ({
 
       {/* Mobile-Optimized Learning Challenges Section */}
       {topicsToShow.length > 0 && (
-        <div className="space-y-4 sm:space-y-8">
+        <div className="space-y-4 sm:space-y-6 lg:space-y-8">
           {topicsToShow.map((topic, index) => {
             const isCompleted = completedTopics.has(topic.id);
             const isSelected = selectedTopicId === topic.id;
@@ -132,9 +132,9 @@ const WeekContent = ({
                   <div className="absolute top-1/2 left-0 w-36 sm:w-72 h-36 sm:h-72 bg-emerald-500/5 rounded-full blur-2xl sm:blur-3xl -translate-y-1/2 -translate-x-18 sm:-translate-x-36"></div>
                   
                   <div className="relative z-10">
-                    <div className="flex items-start justify-between mb-4 sm:mb-6">
-                      <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
-                        <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 ${
+                    <div className="flex items-start justify-between mb-3 sm:mb-4 lg:mb-6">
+                      <div className="flex items-center gap-2 sm:gap-3 lg:gap-4 flex-1 min-w-0">
+                        <div className={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg flex-shrink-0 ${
                           isCompleted 
                             ? 'bg-gradient-to-br from-emerald-500 to-green-600' 
                             : isSelected
@@ -142,30 +142,30 @@ const WeekContent = ({
                             : 'bg-gradient-to-br from-gray-500 to-gray-600'
                         }`}>
                           {isCompleted ? (
-                            <CheckCircle className="text-white" size={16} />
+                            <CheckCircle className="text-white" size={14} />
                           ) : (
-                            <span className="text-white text-sm font-bold">{index + 1}</span>
+                            <span className="text-white text-xs sm:text-sm font-bold">{index + 1}</span>
                           )}
                         </div>
                         
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-lg sm:text-2xl font-bold text-white mb-1 sm:mb-2 bg-gradient-to-r from-white via-emerald-100 to-white bg-clip-text text-transparent leading-tight">
+                          <h3 className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-white mb-1 sm:mb-2 bg-gradient-to-r from-white via-emerald-100 to-white bg-clip-text text-transparent leading-tight">
                             {topic.title}
                           </h3>
-                          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-xs sm:text-sm text-emerald-300">
-                            <div className="flex items-center gap-1.5 sm:gap-2">
-                              <BookOpen size={12} />
+                          <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-2 lg:gap-6 text-xs sm:text-sm text-emerald-300">
+                            <div className="flex items-center gap-1 sm:gap-1.5 lg:gap-2">
+                              <BookOpen size={10} />
                               <span>Learn: {topic.timeLearn}</span>
                             </div>
-                            <div className="flex items-center gap-1.5 sm:gap-2">
-                              <Code size={12} />
+                            <div className="flex items-center gap-1 sm:gap-1.5 lg:gap-2">
+                              <Code size={10} />
                               <span>Practice: {topic.timePractice}</span>
                             </div>
                           </div>
                         </div>
                       </div>
                       
-                      <div className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold border backdrop-blur-sm flex-shrink-0 ${
+                      <div className={`px-2 sm:px-3 lg:px-4 py-1 sm:py-1.5 lg:py-2 rounded-full text-xs sm:text-sm font-semibold border backdrop-blur-sm flex-shrink-0 ${
                         isCompleted 
                           ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20' 
                           : 'bg-blue-500/10 text-blue-300 border-blue-500/20'
@@ -209,15 +209,15 @@ const WeekContent = ({
                     <div className="absolute bottom-0 right-0 w-16 sm:w-32 h-16 sm:h-32 bg-purple-500/5 rounded-full blur-xl sm:blur-2xl translate-y-8 sm:translate-y-16 translate-x-8 sm:translate-x-16"></div>
                     
                     <div className="relative z-10">
-                      <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-500/20 rounded-xl sm:rounded-2xl flex items-center justify-center">
-                          <Code className="text-purple-400" size={16} />
+                      <div className="flex items-center gap-2 sm:gap-3 lg:gap-4 mb-3 sm:mb-4 lg:mb-6">
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-purple-500/20 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center">
+                          <Code className="text-purple-400" size={14} />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h4 className="text-lg sm:text-2xl font-bold text-white">
+                          <h4 className="text-base sm:text-lg lg:text-xl xl:text-2xl font-bold text-white">
                             Problems ({topic.problems.length})
                           </h4>
-                          <p className="text-purple-300 mt-1 text-sm sm:text-base hidden sm:block">Sharpen your skills with these challenges</p>
+                          <p className="text-purple-300 mt-1 text-xs sm:text-sm lg:text-base hidden sm:block">Sharpen your skills with these challenges</p>
                         </div>
                       </div>
                       

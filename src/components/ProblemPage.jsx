@@ -518,23 +518,23 @@ const ProblemPage = ({
 
 
       {/* Dynamic Grid Layout */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-none mx-auto px-2 sm:px-4 lg:px-6">
         {/* Problem Statement - Full Width Hero */}
-        <div className="mb-8">
-          <div className="bg-gradient-to-br from-blue-500/8 via-blue-500/4 to-transparent backdrop-blur-sm border border-blue-500/15 rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+        <div className="mb-6 sm:mb-8">
+          <div className="bg-gradient-to-br from-blue-500/8 via-blue-500/4 to-transparent backdrop-blur-sm border border-blue-500/15 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl -translate-y-32 translate-x-32"></div>
             <div className="relative z-10">
-              <div className="flex items-center gap-4 mb-6 sm:mb-8">
-                <div className="w-12 sm:w-14 h-12 sm:h-14 bg-blue-500/20 rounded-2xl flex items-center justify-center rotate-3">
-                  <BookOpen className="text-blue-400" size={20} />
+              <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6 lg:mb-8">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-blue-500/20 rounded-xl sm:rounded-2xl flex items-center justify-center rotate-3">
+                  <BookOpen className="text-blue-400" size={18} />
                 </div>
                 <div>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-white">Challenge Statement</h2>
-                  <p className="text-blue-300 mt-1 text-sm sm:text-base">Read carefully and understand the quest requirements</p>
+                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">Challenge Statement</h2>
+                  <p className="text-blue-300 mt-1 text-xs sm:text-sm lg:text-base">Read carefully and understand the quest requirements</p>
                 </div>
               </div>
-              <div className="bg-gray-900/40 backdrop-blur-sm rounded-2xl p-4 sm:p-8 border border-gray-700/20">
-                <pre className="text-gray-100 whitespace-pre-wrap leading-loose font-mono text-sm sm:text-base overflow-x-auto">
+              <div className="bg-gray-900/40 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-8 border border-gray-700/20">
+                <pre className="text-gray-100 whitespace-pre-wrap leading-loose font-mono text-xs sm:text-sm lg:text-base overflow-x-auto">
                   {combinedData.problem}
                 </pre>
               </div>
@@ -543,31 +543,31 @@ const ProblemPage = ({
         </div>
 
         {/* Two Column Layout */}
-        <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 mb-8">
+        <div className="grid lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8">
           {/* Left Column - Concepts & Hint */}
-          <div className="lg:col-span-2 space-y-6 sm:space-y-8">
+          <div className="lg:col-span-2 space-y-4 sm:space-y-6 lg:space-y-8">
             {/* Concepts */}
-            <div className="bg-gradient-to-br from-purple-500/8 via-purple-500/4 to-transparent backdrop-blur-sm border border-purple-500/15 rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+            <div className="bg-gradient-to-br from-purple-500/8 via-purple-500/4 to-transparent backdrop-blur-sm border border-purple-500/15 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 relative overflow-hidden">
               <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple-500/5 rounded-full blur-3xl translate-y-24 -translate-x-24"></div>
               <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-6 sm:mb-8">
-                  <div className="w-12 sm:w-14 h-12 sm:h-14 bg-purple-500/20 rounded-2xl flex items-center justify-center -rotate-3">
-                    <Brain className="text-purple-400" size={20} />
+                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6 lg:mb-8">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-purple-500/20 rounded-xl sm:rounded-2xl flex items-center justify-center -rotate-3">
+                    <Brain className="text-purple-400" size={18} />
                   </div>
                   <div>
-                    <h2 className="text-2xl sm:text-3xl font-bold text-white">Key Concepts</h2>
-                    <p className="text-purple-300 mt-1 text-sm sm:text-base">Fundamental building blocks for this problem</p>
+                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">Key Concepts</h2>
+                    <p className="text-purple-300 mt-1 text-xs sm:text-sm lg:text-base">Fundamental building blocks for this problem</p>
                   </div>
                 </div>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2 sm:gap-3">
                   {combinedData.concepts.map((concept, idx) => (
                     <button
                       key={idx}
                       onClick={() => handleConceptClick(concept)}
-                      className="group px-4 sm:px-6 py-2 sm:py-3 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/15 hover:border-purple-500/25 rounded-2xl text-purple-300 hover:text-purple-200 font-semibold transition-all duration-300 hover:scale-105 text-sm sm:text-base flex items-center gap-2"
+                      className="group px-3 sm:px-4 lg:px-6 py-2 sm:py-2 lg:py-3 bg-purple-500/10 hover:bg-purple-500/20 border border-purple-500/15 hover:border-purple-500/25 rounded-xl sm:rounded-2xl text-purple-300 hover:text-purple-200 font-semibold transition-all duration-300 hover:scale-105 text-xs sm:text-sm lg:text-base flex items-center gap-2"
                     >
                       <span>{concept}</span>
-                      <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </button>
                   ))}
                 </div>
@@ -575,20 +575,20 @@ const ProblemPage = ({
             </div>
 
             {/* Hint */}
-            <div className="bg-gradient-to-br from-yellow-500/8 via-yellow-500/4 to-transparent backdrop-blur-sm border border-yellow-500/15 rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+            <div className="bg-gradient-to-br from-yellow-500/8 via-yellow-500/4 to-transparent backdrop-blur-sm border border-yellow-500/15 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-40 h-40 bg-yellow-500/5 rounded-full blur-2xl -translate-y-20 translate-x-20"></div>
               <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 sm:w-14 h-12 sm:h-14 bg-yellow-500/20 rounded-2xl flex items-center justify-center rotate-12">
-                    <Lightbulb className="text-yellow-400" size={20} />
+                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-yellow-500/20 rounded-xl sm:rounded-2xl flex items-center justify-center rotate-12">
+                    <Lightbulb className="text-yellow-400" size={18} />
                   </div>
                   <div>
-                    <h2 className="text-2xl sm:text-3xl font-bold text-white">Hint</h2>
-                    <p className="text-yellow-300 mt-1 text-sm sm:text-base">A gentle nudge in the right direction</p>
+                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">Hint</h2>
+                    <p className="text-yellow-300 mt-1 text-xs sm:text-sm lg:text-base">A gentle nudge in the right direction</p>
                   </div>
                 </div>
-                <div className="bg-yellow-500/8 border border-yellow-500/15 rounded-2xl p-4 sm:p-6">
-                  <p className="text-yellow-200 leading-relaxed text-base sm:text-lg">
+                <div className="bg-yellow-500/8 border border-yellow-500/15 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6">
+                  <p className="text-yellow-200 leading-relaxed text-sm sm:text-base lg:text-lg">
                     💡 {combinedData.hint}
                   </p>
                 </div>
@@ -597,79 +597,79 @@ const ProblemPage = ({
           </div>
 
           {/* Right Column - Practice Tips (Updated Design) */}
-          <div className="space-y-6 sm:space-y-8">
-            <div className="bg-gradient-to-br from-emerald-500/8 via-emerald-500/4 to-transparent backdrop-blur-sm border border-emerald-500/15 rounded-3xl p-6 sm:p-8 sticky top-32 relative overflow-hidden">
+          <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+            <div className="bg-gradient-to-br from-emerald-500/8 via-emerald-500/4 to-transparent backdrop-blur-sm border border-emerald-500/15 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 sticky top-32 overflow-hidden">
               <div className="absolute bottom-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl translate-y-16 translate-x-16"></div>
               <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-6 sm:mb-8">
-                  <div className="w-10 sm:w-12 h-10 sm:h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center">
-                    <Zap className="text-emerald-400" size={18} />
+                <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 lg:mb-8">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-emerald-500/20 rounded-lg sm:rounded-xl flex items-center justify-center">
+                    <Zap className="text-emerald-400" size={16} />
                   </div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-white">Practice Guide</h2>
+                  <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-white">Practice Guide</h2>
                 </div>
                 
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   {/* Before Coding Section */}
                   <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-emerald-300 mb-4 flex items-center gap-2">
+                    <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-emerald-300 mb-3 sm:mb-4 flex items-center gap-2">
                       <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
                       Before Coding
                     </h3>
-                    <div className="bg-emerald-500/5 border border-emerald-500/10 rounded-2xl p-4">
-                      <ul className="space-y-3 text-gray-300">
-                        <li className="flex items-start gap-3 group">
+                    <div className="bg-emerald-500/5 border border-emerald-500/10 rounded-xl sm:rounded-2xl p-3 sm:p-4">
+                      <ul className="space-y-2 sm:space-y-3 text-gray-300">
+                        <li className="flex items-start gap-2 sm:gap-3 group">
                           <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
-                          <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Understand the problem completely</span>
+                          <span className="group-hover:text-white transition-colors duration-200 text-xs sm:text-sm lg:text-base">Understand the problem completely</span>
                         </li>
-                        <li className="flex items-start gap-3 group">
+                        <li className="flex items-start gap-2 sm:gap-3 group">
                           <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
-                          <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Identify edge cases</span>
+                          <span className="group-hover:text-white transition-colors duration-200 text-xs sm:text-sm lg:text-base">Identify edge cases</span>
                         </li>
-                        <li className="flex items-start gap-3 group">
+                        <li className="flex items-start gap-2 sm:gap-3 group">
                           <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
-                          <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Plan your approach</span>
+                          <span className="group-hover:text-white transition-colors duration-200 text-xs sm:text-sm lg:text-base">Plan your approach</span>
                         </li>
                       </ul>
                     </div>
                   </div>
 
                   {/* LeetCode Button - Centered */}
-                  <div className="flex justify-center py-2">
+                  <div className="flex justify-center py-1 sm:py-2">
                     <button
                       onClick={handleLeetCodeSearch}
-                      className="group flex items-center gap-3 px-6 py-3.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-xl transition-all duration-300 font-semibold shadow-lg hover:shadow-orange-500/25 transform hover:scale-105 active:scale-95 border border-orange-400/20"
+                      className="group flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white rounded-lg sm:rounded-xl transition-all duration-300 font-semibold shadow-lg hover:shadow-orange-500/25 transform hover:scale-105 active:scale-95 border border-orange-400/20 text-sm sm:text-base"
                     >
-                      <div className="w-6 h-6 bg-white/25 rounded-lg flex items-center justify-center group-hover:bg-white/35 transition-colors duration-300">
-                        <span className="text-sm font-bold">LC</span>
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 bg-white/25 rounded-md sm:rounded-lg flex items-center justify-center group-hover:bg-white/35 transition-colors duration-300">
+                        <span className="text-xs sm:text-sm font-bold">LC</span>
                       </div>
                       <span>Solve on LeetCode</span>
-                      <ExternalLink size={16} className="opacity-75 group-hover:opacity-100 group-hover:rotate-12 transition-all duration-300" />
+                      <ExternalLink size={14} className="opacity-75 group-hover:opacity-100 group-hover:rotate-12 transition-all duration-300" />
                     </button>
                   </div>
                   
                   {/* After Solving Section */}
                   <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-emerald-300 mb-4 flex items-center gap-2">
+                    <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-emerald-300 mb-3 sm:mb-4 flex items-center gap-2">
                       <div className="w-2 h-2 bg-emerald-400 rounded-full"></div>
                       After Solving
                     </h3>
-                    <div className="bg-emerald-500/5 border border-emerald-500/10 rounded-2xl p-4">
-                      <ul className="space-y-3 text-gray-300">
-                        <li className="flex items-start gap-3 group">
+                    <div className="bg-emerald-500/5 border border-emerald-500/10 rounded-xl sm:rounded-2xl p-3 sm:p-4">
+                      <ul className="space-y-2 sm:space-y-3 text-gray-300">
+                        <li className="flex items-start gap-2 sm:gap-3 group">
                           <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
-                          <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Test with examples</span>
+                          <span className="group-hover:text-white transition-colors duration-200 text-xs sm:text-sm lg:text-base">Test with examples</span>
                         </li>
-                        <li className="flex items-start gap-3 group">
+                        <li className="flex items-start gap-2 sm:gap-3 group">
                           <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
-                          <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Analyze complexity</span>
+                          <span className="group-hover:text-white transition-colors duration-200 text-xs sm:text-sm lg:text-base">Analyze complexity</span>
                         </li>
-                        <li className="flex items-start gap-3 group">
+                        <li className="flex items-start gap-2 sm:gap-3 group">
                           <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
-                          <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Consider alternatives</span>
+                          <span className="group-hover:text-white transition-colors duration-200 text-xs sm:text-sm lg:text-base">Consider alternatives</span>
                         </li>
-                        <li className="flex items-start gap-3 group">
+                        <li className="flex items-start gap-2 sm:gap-3 group">
                           <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full mt-2 flex-shrink-0 group-hover:scale-150 transition-transform duration-200"></div>
-                          <span className="group-hover:text-white transition-colors duration-200 text-sm sm:text-base">Review and optimize</span>
+                          <span className="group-hover:text-white transition-colors duration-200 text-xs sm:text-sm lg:text-base">Review and optimize</span>
                         </li>
                       </ul>
                     </div>
@@ -682,22 +682,22 @@ const ProblemPage = ({
 
         {/* Solution Approach - Full Width */}
         <div className="solution-approach-card">
-          <div className="bg-gradient-to-br from-emerald-500/8 via-emerald-500/4 to-transparent backdrop-blur-sm border border-emerald-500/15 rounded-3xl p-6 sm:p-8 relative overflow-hidden">
+          <div className="bg-gradient-to-br from-emerald-500/8 via-emerald-500/4 to-transparent backdrop-blur-sm border border-emerald-500/15 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 relative overflow-hidden">
             <div className="absolute top-1/2 left-0 w-72 h-72 bg-emerald-500/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-36"></div>
             <div className="relative z-10">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 gap-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 sm:w-14 h-12 sm:h-14 bg-emerald-500/20 rounded-2xl flex items-center justify-center -rotate-6">
-                    <Target className="text-emerald-400" size={20} />
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 lg:mb-8 gap-3 sm:gap-4">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 bg-emerald-500/20 rounded-xl sm:rounded-2xl flex items-center justify-center -rotate-6">
+                    <Target className="text-emerald-400" size={18} />
                   </div>
                   <div>
-                    <h2 className="text-2xl sm:text-3xl font-bold text-white">Solution Approach</h2>
-                    <p className="text-emerald-300 mt-1 text-sm sm:text-base">Strategic thinking for optimal solution</p>
+                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">Solution Approach</h2>
+                    <p className="text-emerald-300 mt-1 text-xs sm:text-sm lg:text-base">Strategic thinking for optimal solution</p>
                   </div>
                 </div>
                 <button
                   onClick={() => setShowApproach(!showApproach)}
-                  className="group flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/15 hover:border-emerald-500/25 rounded-2xl text-emerald-300 hover:text-emerald-200 font-semibold transition-all duration-300 flex-shrink-0 transform hover:scale-105"
+                  className="group flex items-center gap-2 sm:gap-3 px-3 sm:px-4 lg:px-6 py-2 sm:py-3 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/15 hover:border-emerald-500/25 rounded-xl sm:rounded-2xl text-emerald-300 hover:text-emerald-200 font-semibold transition-all duration-300 flex-shrink-0 transform hover:scale-105 text-xs sm:text-sm lg:text-base"
                 >
                   <div className={`transition-transform duration-300 ${showApproach ? 'rotate-180' : 'rotate-0'}`}>
                     {showApproach ? (
@@ -714,19 +714,19 @@ const ProblemPage = ({
               
               <div className="relative">
                 <div className={`transition-all duration-500 ease-in-out ${!showApproach ? 'opacity-100 scale-100' : 'opacity-0 scale-95 absolute inset-0 pointer-events-none'}`}>
-                  <div className="bg-emerald-500/8 border border-emerald-500/15 rounded-2xl p-8 sm:p-12 text-center">
-                    <div className="mb-8">
-                      <div className="w-16 sm:w-20 h-16 sm:h-20 bg-emerald-500/20 rounded-3xl flex items-center justify-center mx-auto mb-6 rotate-12 transition-transform duration-300 hover:rotate-0">
-                        <Eye className="text-emerald-400 transition-all duration-300" size={28} />
+                  <div className="bg-emerald-500/8 border border-emerald-500/15 rounded-xl sm:rounded-2xl p-6 sm:p-8 lg:p-12 text-center">
+                    <div className="mb-6 sm:mb-8">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-emerald-500/20 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-4 sm:mb-6 rotate-12 transition-transform duration-300 hover:rotate-0">
+                        <Eye className="text-emerald-400 transition-all duration-300" size={20} />
                       </div>
-                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 transition-colors duration-300">Solution Hidden</h3>
-                      <p className="text-gray-400 text-base sm:text-lg max-w-md mx-auto transition-colors duration-300">
+                      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-white mb-3 sm:mb-4 transition-colors duration-300">Solution Hidden</h3>
+                      <p className="text-gray-400 text-sm sm:text-base lg:text-lg max-w-md mx-auto transition-colors duration-300">
                         Challenge yourself first! Only reveal the approach when you need guidance.
                       </p>
                     </div>
                     <button
                       onClick={() => setShowApproach(true)}
-                      className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 rounded-2xl text-white font-semibold transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:scale-105 transform"
+                      className="px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3 lg:py-4 bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 rounded-xl sm:rounded-2xl text-white font-semibold transition-all duration-300 shadow-lg shadow-emerald-500/25 hover:scale-105 transform text-sm sm:text-base"
                     >
                       Reveal Solution Approach
                     </button>
@@ -734,10 +734,10 @@ const ProblemPage = ({
                 </div>
 
                 <div className={`transition-all duration-500 ease-in-out ${showApproach ? 'opacity-100 scale-100' : 'opacity-0 scale-95 absolute inset-0 pointer-events-none'}`}>
-                  <div className="bg-emerald-500/8 border border-emerald-500/15 rounded-2xl p-6 sm:p-8 transform transition-all duration-300">
-                    <div className="flex items-start gap-3 mb-4">
-                      <div className="w-8 h-8 bg-emerald-500/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
-                        <Target className="text-emerald-400" size={16} />
+                  <div className="bg-emerald-500/8 border border-emerald-500/15 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 transform transition-all duration-300">
+                    <div className="flex items-start gap-2 sm:gap-3 mb-3 sm:mb-4">
+                      <div className="w-6 h-6 sm:w-8 sm:h-8 bg-emerald-500/20 rounded-md sm:rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                        <Target className="text-emerald-400" size={14} />
                       </div>
                       <div className="flex-1">
                         <h4 className="text-emerald-300 font-semibold mb-2 text-sm sm:text-base">Strategic Approach</h4>
