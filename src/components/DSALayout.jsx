@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, Code, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Menu, X, Code, ChevronLeft, ChevronRight } from 'lucide-react';
 import WeekNavigation from './WeekNavigation';
 
 const DSALayout = ({ 

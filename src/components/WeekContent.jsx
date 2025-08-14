@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Clock, BookOpen, Code, CheckCircle, Circle, Star, ExternalLink, Calendar, Target } from 'lucide-react';
+import { BookOpen, Code, CheckCircle, Circle, Star, ExternalLink, Calendar } from 'lucide-react';
 
 const WeekContent = ({ 
   week, 
@@ -50,9 +50,6 @@ const WeekContent = ({
     : weekData.topics || [];
 
   // Get week problems - Add proper type checking
-  const weekProblems = Array.isArray(practiceProblems) 
-    ? practiceProblems.filter(problem => problem.week === week) 
-    : [];
 
   return (
     <div className="space-y-4 sm:space-y-6 lg:space-y-8">
